@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/castImage"
     android:layout_width="@dimen/cast_image_size"
     android:layout_height="@dimen/cast_image_size"
-    android:contentDescription="@string/cast_image_content_description" />
+    android:contentDescription="@string/cast_image_content_description"
+    tools:layout_marginHorizontal="5dp"
+    tools:src="@android:drawable/sym_def_app_icon" />
 

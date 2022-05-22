@@ -13,4 +13,9 @@
     <string name="info_label_text">Info</string>
     <string name="cast_label_text">Cast</string>
     <string name="cast_image_content_description">Cast Image</string>
+    <string name="original_title_label">Original Title</string>
+    <string name="status_label">Status</string>
+    <string name="original_language_label">Original Language</string>
+    <string name="budget_label">Budget</string>
+    <string name="revenue_label">Revenue</string>
 </resources>

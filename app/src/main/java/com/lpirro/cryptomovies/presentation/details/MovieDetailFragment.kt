@@ -53,11 +53,16 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
                 val c = ""
             }
             MovieDetailViewModel.MovieDetailUiState.Loading -> {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.movieDetailLayout.visibility = View.GONE
             }
             is MovieDetailViewModel.MovieDetailUiState.HeaderSuccess -> {
+                binding.progressBar.visibility = View.GONE
                 setupHeader(uiState.movie)
             }
             is MovieDetailViewModel.MovieDetailUiState.DetailSuccess -> {
+                binding.progressBar.visibility = View.GONE
+                binding.movieDetailLayout.visibility = View.VISIBLE
                 setupMovieDetails(uiState.movie)
             }
         }
@@ -87,22 +92,31 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
     }
 
     private fun setupMovieDetails(movieDetail: MovieDetail) {
-        binding.movieOverview.text = movieDetail.overview
-
         val genresAdapter = GenresAdapter()
-        binding.genresRecyclerView.apply {
-            layoutManager = FlexboxLayoutManager(requireContext())
-            adapter = genresAdapter
-            addItemDecoration(GenresItemDecoration())
+        val castAdapter = CastAdapter()
+
+        binding.apply {
+            movieOverview.text = movieDetail.overview
+            infoLayout.originalTitleValue.text = movieDetail.originalTitle
+            infoLayout.statusValue.text = movieDetail.status
+            infoLayout.originalLanguageValue.text = movieDetail.originalLanguage
+            infoLayout.budgetValue.text = movieDetail.budget
+            infoLayout.revenueValue.text = movieDetail.revenue
+
+            genresRecyclerView.apply {
+                layoutManager = FlexboxLayoutManager(requireContext())
+                adapter = genresAdapter
+                addItemDecoration(GenresItemDecoration())
+            }
+
+            castRecyclerView.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                adapter = castAdapter
+                addItemDecoration(GenresItemDecoration())
+            }
         }
         genresAdapter.setData(movieDetail.genres)
-
-        val castAdapter = CastAdapter()
-        binding.castRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = castAdapter
-            addItemDecoration(GenresItemDecoration())
-        }
         castAdapter.setData(movieDetail.castImages)
     }
 }

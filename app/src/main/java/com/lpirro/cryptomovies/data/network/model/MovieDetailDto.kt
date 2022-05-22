@@ -9,7 +9,6 @@ data class MovieDetailsDto(
     @SerializedName("original_title") val originalTitle: String,
     @SerializedName("status") val status: String,
     @SerializedName("original_language") val originalLanguage: String,
-    @SerializedName("production_companies") val productionCompanies: List<ProductionCompaniesDto>,
     @SerializedName("budget") val budget: Int,
     @SerializedName("revenue") val revenue: Int
 )
@@ -19,5 +18,3 @@ data class GenresDto(@SerializedName("id") val id: Int, @SerializedName("name") 
 data class CreditsDto(@SerializedName("cast") val cast: List<CastDto>)
 
 data class CastDto(@SerializedName("profile_path") val profileImageUrl: String)
-
-data class ProductionCompaniesDto(@SerializedName("name") val name: String)

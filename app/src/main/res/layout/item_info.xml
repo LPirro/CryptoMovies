@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="@dimen/margin_24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/originalTitle"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:text="@string/original_title_label"
+        android:textColor="?attr/colorSurfaceInverse"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.4" />
+
+    <TextView
+        android:id="@+id/originalTitleValue"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/originalTitle"
+        app:layout_constraintTop_toTopOf="@id/originalTitle"
+        tools:text="Spider-Man: No Way Homeeeeee" />
+
+    <TextView
+        android:id="@+id/status"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:text="@string/status_label"
+        android:textColor="?attr/colorSurfaceInverse"
+        app:layout_constraintBottom_toBottomOf="@+id/statusValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/statusValue"
+        app:layout_constraintWidth_percent="0.4" />
+
+    <TextView
+        android:id="@+id/statusValue"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/status"
+        app:layout_constraintTop_toBottomOf="@id/originalTitleValue"
+        tools:text="Released" />
+
+    <TextView
+        android:id="@+id/originalLanguage"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:text="@string/original_language_label"
+        android:textColor="?attr/colorSurfaceInverse"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statusValue"
+        app:layout_constraintWidth_percent="0.4" />
+
+    <TextView
+        android:id="@+id/originalLanguageValue"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/originalLanguage"
+        app:layout_constraintTop_toTopOf="@id/originalLanguage"
+        tools:text="En" />
+
+    <TextView
+        android:id="@+id/budget"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:text="@string/budget_label"
+        android:textColor="?attr/colorSurfaceInverse"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/originalLanguage"
+        app:layout_constraintWidth_percent="0.4" />
+
+    <TextView
+        android:id="@+id/budgetValue"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/budget"
+        app:layout_constraintTop_toTopOf="@id/budget"
+        tools:text="$75,000,000" />
+
+    <TextView
+        android:id="@+id/revenue"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:text="@string/revenue_label"
+        android:textColor="?attr/colorSurfaceInverse"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/budget"
+        app:layout_constraintWidth_percent="0.4" />
+
+    <TextView
+        android:id="@+id/revenueValue"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/revenue"
+        app:layout_constraintTop_toTopOf="@id/revenue"
+        tools:text="$161,000,000" />
+</androidx.constraintlayout.widget.ConstraintLayout>

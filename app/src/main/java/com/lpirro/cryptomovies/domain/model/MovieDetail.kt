@@ -7,7 +7,6 @@ data class MovieDetail(
     val originalTitle: String,
     val status: String,
     val originalLanguage: String,
-    val productionCompanies: List<String>,
     val budget: String,
     val revenue: String
 )
