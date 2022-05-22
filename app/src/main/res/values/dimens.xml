@@ -5,6 +5,7 @@
     <dimen name="margin_12dp">12dp</dimen>
     <dimen name="margin_10dp">10dp</dimen>
     <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_5dp">5dp</dimen>
     <dimen name="margin_6dp">6dp</dimen>
     <dimen name="margin_4dp">4dp</dimen>
 
@@ -16,4 +17,5 @@
     <dimen name="movie_detail_backdrop_header">234dp</dimen>
     <dimen name="movie_detail_cover_width">104dp</dimen>
     <dimen name="movie_detail_cover_height">156dp</dimen>
+    <dimen name="cast_image_size">70dp</dimen>
 </resources>

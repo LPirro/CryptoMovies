@@ -88,7 +88,5 @@ class MovieAdapter(
         coverImageView.requestLayout()
     }
 
-    override fun getItemCount(): Int {
-        return movies.size
-    }
+    override fun getItemCount() = movies.size
 }

@@ -1,4 +1,4 @@
-package com.lpirro.cryptomovies.presentation.details
+package com.lpirro.cryptomovies.presentation.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

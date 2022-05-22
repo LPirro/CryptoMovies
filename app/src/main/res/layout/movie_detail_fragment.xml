@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_theme_light_onSurfaceVariant">
+    android:background="?attr/colorSurfaceVariant">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:id="@+id/movieHeaderBox"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:background="@color/md_theme_light_onSurface"
+            android:background="?attr/background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/backdropImage" />
 
@@ -58,7 +58,7 @@
             style="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_theme_dark_outline"
+            android:textColor="?attr/colorOutline"
             app:layout_constraintEnd_toEndOf="@+id/movieHeaderTitle"
             app:layout_constraintStart_toStartOf="@+id/movieHeaderTitle"
             app:layout_constraintTop_toBottomOf="@+id/movieHeaderTitle"
@@ -69,11 +69,88 @@
             android:layout_width="206dp"
             android:layout_height="wrap_content"
             android:text="@string/add_to_watch_list"
+            app:icon="@drawable/ic_movie_outline"
             app:layout_constraintBottom_toBottomOf="@+id/movieHeaderBox"
             app:layout_constraintEnd_toEndOf="@+id/movieHeaderInfo"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/movieHeaderInfo"
             app:layout_constraintTop_toBottomOf="@+id/movieHeaderInfo" />
+
+        <TextView
+            android:id="@+id/movieOverview"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            android:layout_marginTop="24dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@color/md_theme_dark_outline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieHeaderBox"
+            tools:text="Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes..." />
+
+        <TextView
+            android:id="@+id/genresLabel"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_14dp"
+            android:text="@string/genres_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieOverview" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/genresRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/genresLabel"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_genres" />
+
+        <TextView
+            android:id="@+id/castLabel"
+            style="@style/TextAppearance.Material3.TitleLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:text="@string/cast_label_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/genresRecyclerView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/castRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/castLabel"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_genres" />
+
+        <TextView
+            android:id="@+id/infoLabel"
+            style="@style/TextAppearance.Material3.TitleLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:text="@string/info_label_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/castRecyclerView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,6 +3,7 @@ package com.lpirro.cryptomovies.presentation.details.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lpirro.cryptomovies.domain.model.Movie
+import com.lpirro.cryptomovies.domain.model.MovieDetail
 import com.lpirro.cryptomovies.domain.usecases.GetMovieDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,10 +19,25 @@ class MovieDetailViewModel @Inject constructor(
     private val _movie = MutableStateFlow<MovieDetailUiState>(MovieDetailUiState.Loading)
     val movie: StateFlow<MovieDetailUiState> = _movie
 
+    fun start(movieId: Long) {
+        fetchMovie(movieId)
+        fetchMovieDetail(movieId)
+    }
+
+    override fun fetchMovie(movieId: Long) = viewModelScope.launch {
+        try {
+            val movie = movieDetailUseCase.getMovie(movieId)
+            _movie.value = MovieDetailUiState.HeaderSuccess(movie)
+        } catch (e: Exception) {
+            _movie.value =
+                MovieDetailUiState.Error(e.message ?: "Error") // TODO REMOVE HARDCODED VALUE
+        }
+    }
+
     override fun fetchMovieDetail(movieId: Long) = viewModelScope.launch {
         try {
             val movie = movieDetailUseCase.getMovieDetail(movieId)
-            _movie.value = MovieDetailUiState.Success(movie)
+            _movie.value = MovieDetailUiState.DetailSuccess(movie)
         } catch (e: Exception) {
             _movie.value =
                 MovieDetailUiState.Error(e.message ?: "Error") // TODO REMOVE HARDCODED VALUE
@@ -30,7 +46,8 @@ class MovieDetailViewModel @Inject constructor(
 
     sealed class MovieDetailUiState {
         object Loading : MovieDetailUiState()
-        data class Success(val movie: Movie) : MovieDetailUiState()
+        data class HeaderSuccess(val movie: Movie) : MovieDetailUiState()
+        data class DetailSuccess(val movie: MovieDetail) : MovieDetailUiState()
         data class Error(val error: String) : MovieDetailUiState()
     }
 }

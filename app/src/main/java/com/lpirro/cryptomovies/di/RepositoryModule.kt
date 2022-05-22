@@ -4,6 +4,8 @@ import com.lpirro.cryptomovies.data.network.CryptoMovieService
 import com.lpirro.cryptomovies.data.peristance.MoviesDao
 import com.lpirro.cryptomovies.data.repository.CryptoMoviesRepository
 import com.lpirro.cryptomovies.data.repository.CryptoMoviesRepositoryImpl
+import com.lpirro.cryptomovies.data.repository.mapper.MovieDetailMapper
+import com.lpirro.cryptomovies.data.repository.mapper.MovieDetailMapperImpl
 import com.lpirro.cryptomovies.data.repository.mapper.MovieMapper
 import com.lpirro.cryptomovies.data.repository.mapper.MovieMapperImpl
 import dagger.Module
@@ -21,13 +23,24 @@ class RepositoryModule {
     fun provideCryptoMoviesRepository(
         cryptoMovieService: CryptoMovieService,
         moviesDao: MoviesDao,
-        movieMapper: MovieMapper
+        movieMapper: MovieMapper,
+        movieDetailMapper: MovieDetailMapper,
     ): CryptoMoviesRepository {
-        return CryptoMoviesRepositoryImpl(cryptoMovieService, moviesDao, movieMapper)
+        return CryptoMoviesRepositoryImpl(
+            cryptoMovieService,
+            moviesDao,
+            movieMapper,
+            movieDetailMapper
+        )
     }
 
     @Provides
     fun provideMovieMapper(): MovieMapper {
         return MovieMapperImpl()
+    }
+
+    @Provides
+    fun provideMovieDetailsMapper(): MovieDetailMapper {
+        return MovieDetailMapperImpl()
     }
 }

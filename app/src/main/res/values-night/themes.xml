@@ -1,6 +1,7 @@
 <resources>
     <style name="CryptoMovies" parent="Theme.Material3.Dark.NoActionBar">
         <item name="android:statusBarColor">@color/system_ui_scrim_dark</item>
+        <item name="background">@color/md_theme_dark_background</item>
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>

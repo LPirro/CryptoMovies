@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.lpirro.cryptomovies.R
 import com.lpirro.cryptomovies.databinding.HomeFragmentBinding
-import com.lpirro.cryptomovies.presentation.details.BaseFragment
+import com.lpirro.cryptomovies.presentation.base.BaseFragment
 import com.lpirro.cryptomovies.presentation.home.view.MovieSectionView
 import com.lpirro.cryptomovies.presentation.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint

@@ -2,6 +2,7 @@ package com.lpirro.cryptomovies.data.repository
 
 import com.lpirro.cryptomovies.data.network.CryptoMovieService
 import com.lpirro.cryptomovies.data.peristance.MoviesDao
+import com.lpirro.cryptomovies.data.repository.mapper.MovieDetailMapper
 import com.lpirro.cryptomovies.data.repository.mapper.MovieMapper
 import com.lpirro.cryptomovies.domain.model.Category
 import kotlinx.coroutines.Dispatchers
@@ -11,7 +12,8 @@ import kotlinx.coroutines.flow.flowOn
 class CryptoMoviesRepositoryImpl(
     private val cryptoMovieService: CryptoMovieService,
     private val moviesDao: MoviesDao,
-    private val movieMapper: MovieMapper
+    private val movieMapper: MovieMapper,
+    private val movieDetailMapper: MovieDetailMapper
 ) : CryptoMoviesRepository {
 
     override suspend fun getPopularMovies() = flow {
@@ -66,8 +68,13 @@ class CryptoMoviesRepositoryImpl(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun getMovieDetail(movieId: Long) = flow {
+    override suspend fun getMovie(movieId: Long) = flow {
         val movie = moviesDao.getMovie(movieId)
         emit(movie)
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun getMovieDetail(movieId: Long) = flow {
+        val movieDetail = cryptoMovieService.fetchMovieDetail(movieId, "credits")
+        emit(movieDetailMapper.mapDtoToEntity(movieDetail))
     }.flowOn(Dispatchers.IO)
 }

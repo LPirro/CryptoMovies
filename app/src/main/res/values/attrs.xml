@@ -2,9 +2,9 @@
 <resources>
     <declare-styleable name="MovieSectionView">
         <attr name="coverType" format="enum">
-            <enum name="NORMAL" value="0"/>
-            <enum name="BIG" value="1"/>
+            <enum name="NORMAL" value="0" />
+            <enum name="BIG" value="1" />
         </attr>
-        <attr name="sectionTitle" format="string"/>
+        <attr name="sectionTitle" format="string" />
     </declare-styleable>
 </resources>

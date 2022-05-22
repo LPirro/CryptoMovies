@@ -9,4 +9,8 @@
     <string name="section_upcoming_movies">Upcoming</string>
     <string name="movie_backdrop_cover">Movie Backdrop Cover</string>
     <string name="add_to_watch_list">Add to Watch List</string>
+    <string name="genres_text">Genres</string>
+    <string name="info_label_text">Info</string>
+    <string name="cast_label_text">Cast</string>
+    <string name="cast_image_content_description">Cast Image</string>
 </resources>
