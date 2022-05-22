@@ -5,33 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.lpirro.cryptomovies.R
 import com.lpirro.cryptomovies.databinding.HomeFragmentBinding
+import com.lpirro.cryptomovies.presentation.details.BaseFragment
 import com.lpirro.cryptomovies.presentation.home.view.MovieSectionView
 import com.lpirro.cryptomovies.presentation.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), MovieSectionView.MovieClickListener {
-
-    private var _binding: HomeFragmentBinding? = null
-    private val binding get() = _binding!!
+class HomeFragment : BaseFragment<HomeFragmentBinding>(), MovieSectionView.MovieClickListener {
 
     private val viewModel: HomeViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = HomeFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> HomeFragmentBinding
+        get() = HomeFragmentBinding::inflate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -69,11 +60,6 @@ class HomeFragment : Fragment(), MovieSectionView.MovieClickListener {
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onMovieClick(movieId: Long) {
