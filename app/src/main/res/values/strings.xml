@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CryptoMovies</string>
+    <string name="bottom_nav_home_label">Home</string>
+    <string name="bottom_nav_watchlist">Watchlist</string>
+    <string name="movie_poster_content_desc">movie_poster</string>
+    <string name="section_popular_movies">Popular</string>
+    <string name="section_top_rated_movies">Top Rated</string>
+    <string name="section_now_playing_movies">Now Playing</string>
+    <string name="section_upcoming_movies">Upcoming</string>
+    <string name="movie_backdrop_cover">Movie Backdrop Cover</string>
+    <string name="add_to_watch_list">Add to Watch List</string>
+</resources>

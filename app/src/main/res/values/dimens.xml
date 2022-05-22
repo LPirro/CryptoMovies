@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="margin_14dp">14dp</dimen>
+    <dimen name="margin_12dp">12dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_6dp">6dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+
+    <dimen name="movie_poster_big_width">148dp</dimen>
+    <dimen name="movie_poster_big_height">222dp</dimen>
+    <dimen name="movie_poster_corner_radius">12dp</dimen>
+    <dimen name="movie_poster_normal_width">86dp</dimen>
+    <dimen name="movie_poster_normal_height">130dp</dimen>
+    <dimen name="movie_detail_backdrop_header">234dp</dimen>
+    <dimen name="movie_detail_cover_width">104dp</dimen>
+    <dimen name="movie_detail_cover_height">156dp</dimen>
+</resources>
