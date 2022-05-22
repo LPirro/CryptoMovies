@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.lpirro.cryptomovies.R
 
-class GenresItemDecoration : RecyclerView.ItemDecoration() {
+class SpaceItemDecoration : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,

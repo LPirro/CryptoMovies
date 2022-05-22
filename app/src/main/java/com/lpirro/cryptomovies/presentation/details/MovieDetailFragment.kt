@@ -21,7 +21,7 @@ import com.lpirro.cryptomovies.domain.model.MovieDetail
 import com.lpirro.cryptomovies.presentation.base.BaseFragment
 import com.lpirro.cryptomovies.presentation.details.adapter.CastAdapter
 import com.lpirro.cryptomovies.presentation.details.adapter.GenresAdapter
-import com.lpirro.cryptomovies.presentation.details.adapter.GenresItemDecoration
+import com.lpirro.cryptomovies.presentation.details.adapter.SpaceItemDecoration
 import com.lpirro.cryptomovies.presentation.details.viewmodel.MovieDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -34,6 +34,10 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
 
     private val viewModel: MovieDetailViewModel by viewModels()
     private val args: MovieDetailFragmentArgs by navArgs()
+
+    private val spaceDecorator: SpaceItemDecoration by lazy {
+        SpaceItemDecoration()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -103,17 +107,19 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
             infoLayout.budgetValue.text = movieDetail.budget
             infoLayout.revenueValue.text = movieDetail.revenue
 
+            genresRecyclerView.removeItemDecoration(spaceDecorator)
             genresRecyclerView.apply {
                 layoutManager = FlexboxLayoutManager(requireContext())
                 adapter = genresAdapter
-                addItemDecoration(GenresItemDecoration())
+                addItemDecoration(spaceDecorator)
             }
 
+            castRecyclerView.removeItemDecoration(spaceDecorator)
             castRecyclerView.apply {
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 adapter = castAdapter
-                addItemDecoration(GenresItemDecoration())
+                addItemDecoration(spaceDecorator)
             }
         }
         genresAdapter.setData(movieDetail.genres)

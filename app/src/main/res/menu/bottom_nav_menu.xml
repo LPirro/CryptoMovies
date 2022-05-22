@@ -7,6 +7,6 @@
     <item
         android:id="@+id/navigation_watchlist"
         android:title="@string/bottom_nav_watchlist"
-        android:icon="@drawable/ic_movie"/>
+        android:icon="@drawable/ic_bookmark"/>
 
 </menu>

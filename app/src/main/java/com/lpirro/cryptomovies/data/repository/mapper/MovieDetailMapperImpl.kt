@@ -9,7 +9,7 @@ class MovieDetailMapperImpl : MovieDetailMapper {
         overview = movieDetails.overview,
         genres = movieDetails.genres.map { it.name },
         castImages = movieDetails.credits.cast.map {
-            "https://image.tmdb.org/t/p/w500/${it.profileImageUrl}"
+            "https://image.tmdb.org/t/p/w500/${it.profileImageUrl}" // TODO Remove it
         },
         originalTitle = movieDetails.originalTitle,
         status = movieDetails.status,
