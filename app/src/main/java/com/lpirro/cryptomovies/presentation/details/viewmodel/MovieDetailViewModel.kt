@@ -6,9 +6,9 @@ import com.lpirro.cryptomovies.domain.model.Movie
 import com.lpirro.cryptomovies.domain.model.MovieDetail
 import com.lpirro.cryptomovies.domain.usecases.GetMovieDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -45,7 +45,16 @@ class MovieDetailViewModel @Inject constructor(
     }
 
     override fun addToWatchlist(movieId: Long) = viewModelScope.launch {
-        movieDetailUseCase.addToWatchlist(movieId)
+        val isAlreadyOnWatchList = movieDetailUseCase.isAlreadyOnWatchlist(movieId)
+        if (isAlreadyOnWatchList) {
+            movieDetailUseCase.removeFromWatchlist(movieId)
+        } else {
+            movieDetailUseCase.addToWatchlist(movieId)
+        }
+    }
+
+    override fun isAlreadyOnWatchlist(movieId: Long): Job {
+        TODO("Not yet implemented")
     }
 
     sealed class MovieDetailUiState {

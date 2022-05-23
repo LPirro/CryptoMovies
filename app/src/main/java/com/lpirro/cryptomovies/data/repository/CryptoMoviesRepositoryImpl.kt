@@ -87,4 +87,14 @@ class CryptoMoviesRepositoryImpl(
     override suspend fun addToWatchList(movieId: Long) {
         moviesDao.insertToWatchlist(movieId)
     }
+
+    override suspend fun isAlreadyOnWatchList(movieId: Long) = flow {
+        val isAlreadyOnWatchlist = moviesDao.isAlreadyOnWatchList(movieId)
+        emit(isAlreadyOnWatchlist)
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun removeFromWatchlist(movieId: Long) {
+        moviesDao.deleteFromWatchlist(movieId)
+    }
+
 }

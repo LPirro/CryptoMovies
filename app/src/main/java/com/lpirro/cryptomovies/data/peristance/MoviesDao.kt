@@ -22,6 +22,12 @@ interface MoviesDao {
     @Query("INSERT INTO watchlist_table SELECT * FROM movie_table WHERE id=:movieId")
     suspend fun insertToWatchlist(movieId: Long)
 
+    @Query("DELETE FROM watchlist_table WHERE id=:movieId")
+    suspend fun deleteFromWatchlist(movieId: Long)
+
     @Query("SELECT * FROM watchlist_table")
     fun getWatchlist(): List<WatchlistMovie>
+
+    @Query("SELECT EXISTS(SELECT * FROM watchlist_table WHERE id = :movieId)")
+    fun isAlreadyOnWatchList(movieId: Long): Boolean
 }

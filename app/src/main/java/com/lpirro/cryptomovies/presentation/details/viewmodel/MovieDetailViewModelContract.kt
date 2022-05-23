@@ -6,4 +6,5 @@ interface MovieDetailViewModelContract {
     fun fetchMovie(movieId: Long): Job
     fun fetchMovieDetail(movieId: Long): Job
     fun addToWatchlist(movieId: Long): Job
+    fun isAlreadyOnWatchlist(movieId: Long): Job
 }

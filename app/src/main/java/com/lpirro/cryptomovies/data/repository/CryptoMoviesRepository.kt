@@ -14,4 +14,6 @@ interface CryptoMoviesRepository {
     suspend fun getMovieDetail(movieId: Long): Flow<MovieDetail>
     suspend fun getWatchlist(): Flow<List<WatchlistMovie>>
     suspend fun addToWatchList(movieId: Long)
+    suspend fun isAlreadyOnWatchList(movieId: Long): Flow<Boolean>
+    suspend fun removeFromWatchlist(movieId: Long)
 }

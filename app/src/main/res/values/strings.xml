@@ -18,4 +18,5 @@
     <string name="original_language_label">Original Language</string>
     <string name="budget_label">Budget</string>
     <string name="revenue_label">Revenue</string>
+    <string name="watchlist_label">Watchlist</string>
 </resources>

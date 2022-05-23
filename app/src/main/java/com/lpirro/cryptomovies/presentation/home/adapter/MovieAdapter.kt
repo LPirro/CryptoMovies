@@ -62,7 +62,7 @@ class MovieAdapter(
             }
         }
 
-        Glide.with(holder.itemView.context)
+        Glide.with(context)
             .load(movie.posterUrl)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .transition(DrawableTransitionOptions.withCrossFade())
@@ -78,9 +78,7 @@ class MovieAdapter(
             )
             .into(holder.binding.movieCover)
 
-        holder.binding.movieCover.setOnClickListener {
-            moviePosterClickListener.invoke(movie.id)
-        }
+        holder.binding.movieCover.setOnClickListener { moviePosterClickListener.invoke(movie.id) }
     }
 
     private fun setupCoverSize(coverImageView: ImageView, height: Int, width: Int) {

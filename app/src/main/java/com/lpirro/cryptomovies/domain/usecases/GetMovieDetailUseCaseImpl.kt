@@ -20,4 +20,12 @@ class GetMovieDetailUseCaseImpl(
     override suspend fun addToWatchlist(movieId: Long) {
         repository.addToWatchList(movieId)
     }
+
+    override suspend fun isAlreadyOnWatchlist(movieId: Long): Boolean {
+        return repository.isAlreadyOnWatchList(movieId).single()
+    }
+
+    override suspend fun removeFromWatchlist(movieId: Long) {
+        repository.removeFromWatchlist(movieId)
+    }
 }

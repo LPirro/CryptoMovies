@@ -19,7 +19,7 @@ class WatchlistViewModel @Inject constructor(
     private val _watchlist = MutableStateFlow<WatchlistUiState>(WatchlistUiState.Loading)
     val watchlist: StateFlow<WatchlistUiState> = _watchlist
 
-    init {
+    fun refresh() {
         fetchWatchlist()
     }
 
