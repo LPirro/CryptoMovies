@@ -76,7 +76,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
             movieInfoView.originalTitle = movieDetail.originalTitle
             movieInfoView.status = movieDetail.status
             movieInfoView.originalLanguage = movieDetail.originalLanguage
-            movieInfoView.budget = movieInfoView.budget
+            movieInfoView.budget = movieDetail.budget
             movieInfoView.revenue = movieDetail.revenue
         }
     }

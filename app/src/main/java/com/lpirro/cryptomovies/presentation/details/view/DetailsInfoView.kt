@@ -9,6 +9,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.lpirro.cryptomovies.databinding.MovieDetailInfoViewBinding
 import com.lpirro.cryptomovies.presentation.details.adapter.CastAdapter
 import com.lpirro.cryptomovies.presentation.details.adapter.GenresAdapter
+import com.lpirro.cryptomovies.presentation.details.adapter.GenresItemDecoration
 import com.lpirro.cryptomovies.presentation.details.adapter.SpaceItemDecoration
 
 class DetailsInfoView @JvmOverloads constructor(
@@ -85,7 +86,7 @@ class DetailsInfoView @JvmOverloads constructor(
             genresRecyclerView.apply {
                 layoutManager = FlexboxLayoutManager(context)
                 adapter = genresAdapter
-                addItemDecoration(spaceDecorator)
+                addItemDecoration(GenresItemDecoration(context))
             }
 
             castRecyclerView.removeItemDecoration(spaceDecorator)

@@ -54,7 +54,6 @@ class WatchlistMoviesAdapter(
         holder.binding.movieCover.setOnClickListener { moviePosterClickListener.invoke(movie.id) }
     }
 
-
     override fun getItemCount(): Int {
         return movies.size
     }

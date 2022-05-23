@@ -6,9 +6,10 @@ import com.lpirro.cryptomovies.domain.model.Movie
 import com.lpirro.cryptomovies.domain.model.MovieDetail
 import com.lpirro.cryptomovies.domain.usecases.GetMovieDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

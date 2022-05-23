@@ -45,7 +45,7 @@
                 android:layout_marginStart="@dimen/margin_16dp"
                 android:layout_marginTop="@dimen/margin_24dp"
                 android:src="@drawable/ic_back"
-                app:tint="?attr/colorOnSurface"
+                app:tint="@color/md_theme_dark_onSurface"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

@@ -96,5 +96,4 @@ class CryptoMoviesRepositoryImpl(
     override suspend fun removeFromWatchlist(movieId: Long) {
         moviesDao.deleteFromWatchlist(movieId)
     }
-
 }
