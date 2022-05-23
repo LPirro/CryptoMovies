@@ -8,13 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.google.android.flexbox.FlexboxLayoutManager
-import com.lpirro.cryptomovies.R
 import com.lpirro.cryptomovies.databinding.MovieDetailFragmentBinding
 import com.lpirro.cryptomovies.domain.model.Movie
 import com.lpirro.cryptomovies.domain.model.MovieDetail
@@ -73,26 +67,10 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
     }
 
     private fun setupHeader(movie: Movie) {
-        Glide.with(this)
-            .load(movie.backdropPath)
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-            .into(binding.backdropImage)
-
-        Glide.with(this)
-            .load(movie.posterUrl)
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-            .transition(DrawableTransitionOptions.withCrossFade())
-            .apply(
-                bitmapTransform(
-                    RoundedCorners(
-                        resources.getDimensionPixelSize(R.dimen.movie_poster_corner_radius)
-                    )
-                )
-            )
-            .into(binding.moviePoster)
-
-        binding.movieHeaderTitle.text = movie.title
-        binding.movieHeaderInfo.text = movie.releaseDate
+        binding.movieHeader.backdropImage = movie.backdropPath
+        binding.movieHeader.moviePoster = movie.posterUrl
+        binding.movieHeader.movieTitle = movie.title
+        binding.movieHeader.headerInfo = movie.releaseDate
     }
 
     private fun setupMovieDetails(movieDetail: MovieDetail) {

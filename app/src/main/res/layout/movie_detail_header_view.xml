@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/backdropImage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/movie_detail_backdrop_header"
+        android:contentDescription="@string/movie_backdrop_cover"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/moviePoster"
+        android:layout_width="@dimen/movie_detail_cover_width"
+        android:layout_height="@dimen/movie_detail_cover_height"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:contentDescription="@string/movie_poster_content_desc"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/movieHeaderBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7"
+        tools:background="@color/cardview_dark_background" />
+
+    <View
+        android:id="@+id/movieHeaderBox"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="?attr/background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backdropImage" />
+
+    <TextView
+        android:id="@+id/movieHeaderTitle"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/moviePoster"
+        app:layout_constraintTop_toBottomOf="@+id/backdropImage"
+        tools:text="Spider-Man: No Way Home" />
+
+    <TextView
+        android:id="@+id/movieHeaderInfo"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOutline"
+        app:layout_constraintEnd_toEndOf="@+id/movieHeaderTitle"
+        app:layout_constraintStart_toStartOf="@+id/movieHeaderTitle"
+        app:layout_constraintTop_toBottomOf="@+id/movieHeaderTitle"
+        tools:text="Feb 2022 • 203 mins " />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/watchlistButton"
+        android:layout_width="206dp"
+        android:layout_height="wrap_content"
+        android:text="@string/add_to_watch_list"
+        app:icon="@drawable/ic_bookmark_outline"
+        app:layout_constraintBottom_toBottomOf="@+id/movieHeaderBox"
+        app:layout_constraintEnd_toEndOf="@+id/movieHeaderInfo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/movieHeaderInfo"
+        app:layout_constraintTop_toBottomOf="@+id/movieHeaderInfo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
