@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.lpirro.cryptomovies.R
 import com.lpirro.cryptomovies.databinding.ItemCastBinding
 
 class CastAdapter : RecyclerView.Adapter<CastAdapter.CastViewHolder>() {
@@ -34,6 +36,9 @@ class CastAdapter : RecyclerView.Adapter<CastAdapter.CastViewHolder>() {
         Glide.with(holder.itemView.context)
             .load(castImage)
             .circleCrop()
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .error(R.drawable.ic_cast_placeholder)
+            .placeholder(R.drawable.ic_cast_placeholder)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .into(holder.binding.castImage)
     }

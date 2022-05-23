@@ -66,6 +66,7 @@ class MovieAdapter(
             .load(movie.posterUrl)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .transition(DrawableTransitionOptions.withCrossFade())
+            .error(R.drawable.ic_cover_placeholder)
             .apply(
                 RequestOptions.bitmapTransform(
                     RoundedCorners(
