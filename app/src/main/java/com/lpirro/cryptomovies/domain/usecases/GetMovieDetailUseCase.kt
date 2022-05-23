@@ -6,4 +6,5 @@ import com.lpirro.cryptomovies.domain.model.MovieDetail
 interface GetMovieDetailUseCase {
     suspend fun getMovie(movieId: Long): Movie
     suspend fun getMovieDetail(movieId: Long): MovieDetail
+    suspend fun addToWatchlist(movieId: Long)
 }

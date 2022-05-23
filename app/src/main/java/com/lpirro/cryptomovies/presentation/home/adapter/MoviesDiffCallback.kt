@@ -18,10 +18,9 @@ class MoviesDiffCallback(
     }
 
     override fun areContentsTheSame(oldPosition: Int, newPosition: Int): Boolean {
-        val (_, value, name) = oldList[oldPosition]
-        val (_, value1, name1) = newList[newPosition]
-
-        return name == name1 && value == value1
+        val title = oldList[oldPosition].title
+        val newTitle = newList[newPosition].title
+        return title == newTitle
     }
 
     @Nullable

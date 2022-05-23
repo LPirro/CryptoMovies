@@ -16,4 +16,8 @@ class GetMovieDetailUseCaseImpl(
     override suspend fun getMovieDetail(movieId: Long): MovieDetail {
         return repository.getMovieDetail(movieId).single()
     }
+
+    override suspend fun addToWatchlist(movieId: Long) {
+        repository.addToWatchList(movieId)
+    }
 }

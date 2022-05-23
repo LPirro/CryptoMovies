@@ -21,6 +21,10 @@ class DetailsHeaderView @JvmOverloads constructor(
     private val binding =
         MovieDetailHeaderViewBinding.inflate(LayoutInflater.from(context), this, true)
 
+    init {
+        binding.watchlistButton.setOnClickListener { watchlistClickListener?.invoke() }
+    }
+
     var backdropImage: String? = null
         set(value) {
             field = value
@@ -74,4 +78,6 @@ class DetailsHeaderView @JvmOverloads constructor(
     private fun setInfo(info: String) {
         binding.movieHeaderInfo.text = info
     }
+
+    var watchlistClickListener: (() -> Unit)? = null
 }

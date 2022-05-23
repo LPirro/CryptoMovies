@@ -44,6 +44,10 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
+    override fun addToWatchlist(movieId: Long) = viewModelScope.launch {
+        movieDetailUseCase.addToWatchlist(movieId)
+    }
+
     sealed class MovieDetailUiState {
         object Loading : MovieDetailUiState()
         data class HeaderSuccess(val movie: Movie) : MovieDetailUiState()

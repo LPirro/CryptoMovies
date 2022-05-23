@@ -17,4 +17,10 @@
             android:name="movieId"
             app:argType="long" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_watchlist"
+        android:name="com.lpirro.cryptomovies.presentation.watchlist.WatchlistFragment"
+        android:label="@string/app_name" />
+
 </navigation>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.lpirro.cryptomovies.databinding.MovieDetailFragmentBinding
 import com.lpirro.cryptomovies.domain.model.Movie
@@ -60,6 +61,10 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
             movieHeaderView.moviePoster = movie.posterUrl
             movieHeaderView.movieTitle = movie.title
             movieHeaderView.headerInfo = movie.releaseDate
+            backArrow.setOnClickListener { findNavController().popBackStack() }
+            movieHeaderView.watchlistClickListener = {
+                viewModel.addToWatchlist(movie.id)
+            }
         }
     }
 

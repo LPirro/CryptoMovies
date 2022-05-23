@@ -12,13 +12,13 @@ data class HomeScreen(
 )
 
 @Entity(tableName = "movie_table")
-data class Movie(
-    @PrimaryKey @ColumnInfo(name = "id") val id: Long,
-    @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "posterUrl") val posterUrl: String,
-    @ColumnInfo(name = "backdropPath") val backdropPath: String,
-    @ColumnInfo(name = "releaseDate") val releaseDate: String,
-    @ColumnInfo(name = "category") val category: Category?
+open class Movie(
+    @PrimaryKey @ColumnInfo(name = "id") open val id: Long,
+    @ColumnInfo(name = "title") open val title: String,
+    @ColumnInfo(name = "posterUrl") open val posterUrl: String,
+    @ColumnInfo(name = "backdropPath") open val backdropPath: String,
+    @ColumnInfo(name = "releaseDate") open val releaseDate: String,
+    @ColumnInfo(name = "category") open val category: Category?,
 )
 
 enum class Category {

@@ -2,6 +2,7 @@ package com.lpirro.cryptomovies.data.repository
 
 import com.lpirro.cryptomovies.domain.model.Movie
 import com.lpirro.cryptomovies.domain.model.MovieDetail
+import com.lpirro.cryptomovies.domain.model.WatchlistMovie
 import kotlinx.coroutines.flow.Flow
 
 interface CryptoMoviesRepository {
@@ -11,4 +12,6 @@ interface CryptoMoviesRepository {
     suspend fun getUpcomingMovies(): Flow<List<Movie>>
     suspend fun getMovie(movieId: Long): Flow<Movie>
     suspend fun getMovieDetail(movieId: Long): Flow<MovieDetail>
+    suspend fun getWatchlist(): Flow<List<WatchlistMovie>>
+    suspend fun addToWatchList(movieId: Long)
 }

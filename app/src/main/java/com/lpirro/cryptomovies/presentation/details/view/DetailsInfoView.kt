@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.flexbox.FlexboxLayoutManager
-import com.lpirro.cryptomovies.databinding.MovieDetailInforViewBinding
+import com.lpirro.cryptomovies.databinding.MovieDetailInfoViewBinding
 import com.lpirro.cryptomovies.presentation.details.adapter.CastAdapter
 import com.lpirro.cryptomovies.presentation.details.adapter.GenresAdapter
 import com.lpirro.cryptomovies.presentation.details.adapter.SpaceItemDecoration
@@ -18,7 +18,7 @@ class DetailsInfoView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val binding =
-        MovieDetailInforViewBinding.inflate(LayoutInflater.from(context), this, true)
+        MovieDetailInfoViewBinding.inflate(LayoutInflater.from(context), this, true)
 
     private val genresAdapter = GenresAdapter()
     private val castAdapter = CastAdapter()

@@ -16,9 +16,10 @@ class CryptoMoviesRepositoryImpl(
     private val movieDetailMapper: MovieDetailMapper
 ) : CryptoMoviesRepository {
 
+    // TODO CHANGE IF(TRUE) AFTER TESTING
     override suspend fun getPopularMovies() = flow {
         val localMovies = moviesDao.getMoviesListWithCategory(Category.POPULAR)
-        if (localMovies.isEmpty()) {
+        if (true) {
             val result = cryptoMovieService.fetchPopularMovies().movies.map {
                 movieMapper.mapDtoToEntity(it, Category.POPULAR)
             }
@@ -31,7 +32,7 @@ class CryptoMoviesRepositoryImpl(
 
     override suspend fun getTopRatedMovies() = flow {
         val localMovies = moviesDao.getMoviesListWithCategory(Category.TOP_RATED)
-        if (localMovies.isEmpty()) {
+        if (true) {
             val result = cryptoMovieService.fetchTopRatedMovies().movies.map {
                 movieMapper.mapDtoToEntity(it, Category.TOP_RATED)
             }
@@ -44,7 +45,7 @@ class CryptoMoviesRepositoryImpl(
 
     override suspend fun getNowPlayingMovies() = flow {
         val localMovies = moviesDao.getMoviesListWithCategory(Category.NOW_PLAYING)
-        if (localMovies.isEmpty()) {
+        if (true) {
             val result = cryptoMovieService.fetchNowPlayingMovies().movies.map {
                 movieMapper.mapDtoToEntity(it, Category.NOW_PLAYING)
             }
@@ -57,7 +58,7 @@ class CryptoMoviesRepositoryImpl(
 
     override suspend fun getUpcomingMovies() = flow {
         val localMovies = moviesDao.getMoviesListWithCategory(Category.UPCOMING)
-        if (localMovies.isEmpty()) {
+        if (true) {
             val result = cryptoMovieService.fetchUpcomingMovies().movies.map {
                 movieMapper.mapDtoToEntity(it, Category.UPCOMING)
             }
@@ -77,4 +78,13 @@ class CryptoMoviesRepositoryImpl(
         val movieDetail = cryptoMovieService.fetchMovieDetail(movieId, "credits")
         emit(movieDetailMapper.mapDtoToEntity(movieDetail))
     }.flowOn(Dispatchers.IO)
+
+    override suspend fun getWatchlist() = flow {
+        val watchlistMovies = moviesDao.getWatchlist()
+        emit(watchlistMovies)
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun addToWatchList(movieId: Long) {
+        moviesDao.insertToWatchlist(movieId)
+    }
 }
