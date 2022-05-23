@@ -10,14 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.lpirro.cryptomovies.presentation.details.view.DetailsHeaderView
-            android:id="@+id/movieHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/movieDetailLayout"
             android:layout_width="match_parent"
@@ -26,94 +18,24 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movieHeader"
+            app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible">
 
-            <TextView
-                android:id="@+id/movieOverview"
-                style="@style/TextAppearance.AppCompat.Body2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                android:layout_marginTop="24dp"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:textColor="@color/md_theme_dark_outline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes..." />
-
-            <TextView
-                android:id="@+id/genresLabel"
-                style="@style/TextAppearance.MaterialComponents.Subtitle2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                android:layout_marginTop="@dimen/margin_14dp"
-                android:text="@string/genres_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movieOverview" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/genresRecyclerView"
+            <com.lpirro.cryptomovies.presentation.details.view.DetailsHeaderView
+                android:id="@+id/movieHeaderView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/genresLabel"
-                tools:itemCount="3"
-                tools:listitem="@layout/item_genres" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/castLabel"
-                style="@style/TextAppearance.Material3.TitleLarge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                android:layout_marginTop="@dimen/margin_16dp"
-                android:text="@string/cast_label_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/genresRecyclerView" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/castRecyclerView"
+            <com.lpirro.cryptomovies.presentation.details.view.DetailsInfoView
+                android:id="@+id/movieInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_16dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/castLabel"
-                tools:itemCount="5"
-                tools:listitem="@layout/item_cast" />
-
-            <TextView
-                android:id="@+id/infoLabel"
-                style="@style/TextAppearance.Material3.TitleLarge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                android:layout_marginTop="@dimen/margin_16dp"
-                android:text="@string/info_label_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/castRecyclerView" />
-
-            <include
-                android:id="@+id/infoLayout"
-                layout="@layout/item_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/infoLabel" />
+                app:layout_constraintTop_toBottomOf="@id/movieHeaderView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -126,7 +48,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movieHeader"
             app:layout_constraintVertical_bias="0.2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,15 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.flexbox.FlexboxLayoutManager
 import com.lpirro.cryptomovies.databinding.MovieDetailFragmentBinding
 import com.lpirro.cryptomovies.domain.model.Movie
 import com.lpirro.cryptomovies.domain.model.MovieDetail
 import com.lpirro.cryptomovies.presentation.base.BaseFragment
-import com.lpirro.cryptomovies.presentation.details.adapter.CastAdapter
-import com.lpirro.cryptomovies.presentation.details.adapter.GenresAdapter
-import com.lpirro.cryptomovies.presentation.details.adapter.SpaceItemDecoration
 import com.lpirro.cryptomovies.presentation.details.viewmodel.MovieDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -29,19 +24,12 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
     private val viewModel: MovieDetailViewModel by viewModels()
     private val args: MovieDetailFragmentArgs by navArgs()
 
-    private val spaceDecorator: SpaceItemDecoration by lazy {
-        SpaceItemDecoration()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.start(args.movieId)
-
         lifecycleScope.launch {
-            viewModel.movie.collect {
-                updateUi(it)
-            }
+            viewModel.movie.collect { updateUi(it) }
         }
     }
 
@@ -67,40 +55,24 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
     }
 
     private fun setupHeader(movie: Movie) {
-        binding.movieHeader.backdropImage = movie.backdropPath
-        binding.movieHeader.moviePoster = movie.posterUrl
-        binding.movieHeader.movieTitle = movie.title
-        binding.movieHeader.headerInfo = movie.releaseDate
+        binding.apply {
+            movieHeaderView.backdropImage = movie.backdropPath
+            movieHeaderView.moviePoster = movie.posterUrl
+            movieHeaderView.movieTitle = movie.title
+            movieHeaderView.headerInfo = movie.releaseDate
+        }
     }
 
     private fun setupMovieDetails(movieDetail: MovieDetail) {
-        val genresAdapter = GenresAdapter()
-        val castAdapter = CastAdapter()
-
         binding.apply {
-            movieOverview.text = movieDetail.overview
-            infoLayout.originalTitleValue.text = movieDetail.originalTitle
-            infoLayout.statusValue.text = movieDetail.status
-            infoLayout.originalLanguageValue.text = movieDetail.originalLanguage
-            infoLayout.budgetValue.text = movieDetail.budget
-            infoLayout.revenueValue.text = movieDetail.revenue
-
-            genresRecyclerView.removeItemDecoration(spaceDecorator)
-            genresRecyclerView.apply {
-                layoutManager = FlexboxLayoutManager(requireContext())
-                adapter = genresAdapter
-                addItemDecoration(spaceDecorator)
-            }
-
-            castRecyclerView.removeItemDecoration(spaceDecorator)
-            castRecyclerView.apply {
-                layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                adapter = castAdapter
-                addItemDecoration(spaceDecorator)
-            }
+            movieInfoView.overview = movieDetail.overview
+            movieInfoView.genres = movieDetail.genres
+            movieInfoView.cast = movieDetail.castImages
+            movieInfoView.originalTitle = movieDetail.originalTitle
+            movieInfoView.status = movieDetail.status
+            movieInfoView.originalLanguage = movieDetail.originalLanguage
+            movieInfoView.budget = movieInfoView.budget
+            movieInfoView.revenue = movieDetail.revenue
         }
-        genresAdapter.setData(movieDetail.genres)
-        castAdapter.setData(movieDetail.castImages)
     }
 }
