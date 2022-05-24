@@ -32,7 +32,7 @@ apiKey="moviedb api key"
 ## Architecture
 This app is based on MVVM architecture and follows Clean Architecture principles with the repository pattern
 
-![Architecture Diagram](https://i.ibb.co/8Mm1ZYw/Schermata-2022-05-24-alle-16-46-03.png)
+![Architecture Diagram](https://i.ibb.co/qB8KzrW/Schermata-2022-05-24-alle-17-07-32.png)
 ## Design
 ![Logo](https://i.ibb.co/6BqqNFR/figma.png)
 
