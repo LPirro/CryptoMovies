@@ -35,6 +35,7 @@ This app is based on MVVM architecture and follows Clean Architecture principles
 ![Architecture Diagram](https://i.ibb.co/8Mm1ZYw/Schermata-2022-05-24-alle-16-46-03.png)
 ## Design
 ![Logo](https://i.ibb.co/6BqqNFR/figma.png)
+
 For designing this app, I used Figma, one of the industry standard tools used by Designers for creating UI and UX for mobile and Desktop. You can find the artboard of the app with all the specs here: [CryptoMovies](https://www.figma.com/file/vH2ODv1osOVA4UyUVQY4tQ/CryptoMovies?)
 ## API
 CryptoMovies uses the open API from [The Movie Database](https://developers.themoviedb.org/3)
