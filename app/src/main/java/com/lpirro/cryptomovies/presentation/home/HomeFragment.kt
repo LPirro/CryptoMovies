@@ -46,8 +46,10 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(), MovieSectionView.Movie
         when (uiState) {
             is HomeViewModel.HomeUiState.Error -> {
                 binding.progressBar.visibility = View.GONE
+                binding.errorView.visibility = View.VISIBLE
             }
             HomeViewModel.HomeUiState.Loading -> {
+                binding.errorView.visibility = View.GONE
                 binding.progressBar.visibility = View.VISIBLE
             }
             is HomeViewModel.HomeUiState.Success -> {
@@ -64,6 +66,6 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(), MovieSectionView.Movie
 
     override fun onMovieClick(movieId: Long) {
         val bundle = bundleOf("movieId" to movieId)
-        findNavController().navigate(R.id.navigation_movie_detail, bundle)
+        findNavController().navigate(R.id.action_navigation_home_to_navigation_movie_detail, bundle)
     }
 }

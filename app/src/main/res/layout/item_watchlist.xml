@@ -3,7 +3,7 @@
     android:id="@+id/movieCover"
     android:layout_width="116dp"
     android:layout_height="174dp"
-    android:foreground="?attr/selectableItemBackground"
     android:contentDescription="@string/movie_poster_content_desc"
+    android:foreground="?attr/selectableItemBackground"
     android:scaleType="fitXY" />
 

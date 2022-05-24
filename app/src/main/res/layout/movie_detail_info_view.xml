@@ -37,12 +37,12 @@
         android:id="@+id/genresRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16dp"
         android:orientation="horizontal"
         app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/genresLabel"
-        android:layout_marginHorizontal="@dimen/margin_16dp"
         tools:itemCount="3"
         tools:listitem="@layout/item_genres" />
 

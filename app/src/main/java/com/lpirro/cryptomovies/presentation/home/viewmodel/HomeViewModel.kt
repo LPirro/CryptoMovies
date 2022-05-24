@@ -28,13 +28,13 @@ class HomeViewModel @Inject constructor(
             val homeScreen = homeScreenUseCase.getHomeScreen()
             _homeScreen.value = HomeUiState.Success(homeScreen)
         } catch (e: Exception) {
-            _homeScreen.value = HomeUiState.Error(e.message ?: "Error") // TODO REMOVE HARDCODED VALUE
+            _homeScreen.value = HomeUiState.Error
         }
     }
 
     sealed class HomeUiState {
         object Loading : HomeUiState()
         data class Success(val homeScreen: HomeScreen) : HomeUiState()
-        data class Error(val error: String) : HomeUiState()
+        object Error : HomeUiState()
     }
 }

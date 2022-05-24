@@ -37,7 +37,6 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
     private fun updateUi(uiState: MovieDetailViewModel.MovieDetailUiState) {
         when (uiState) {
             is MovieDetailViewModel.MovieDetailUiState.Error -> {
-                val c = ""
             }
             MovieDetailViewModel.MovieDetailUiState.Loading -> {
                 binding.progressBar.visibility = View.VISIBLE

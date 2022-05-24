@@ -30,9 +30,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/emptyWatchList"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/background"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/emptyWatchlistIcon"
@@ -43,22 +45,23 @@
             app:layout_constraintBottom_toTopOf="@+id/emptyWatchListText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:tint="?attr/colorOnSurface"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            app:tint="?attr/colorOnSurface" />
 
         <TextView
             android:id="@+id/emptyWatchListText"
             style="@style/TextAppearance.Material3.HeadlineSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_12dp"
             android:text="@string/your_watchlist_is_empty"
+            android:textColor="?attr/colorOnSurface"
             app:layout_constraintBottom_toTopOf="@+id/startExploringButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            android:textColor="?attr/colorOnSurface"
-            android:layout_marginTop="@dimen/margin_12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emptyWatchlistIcon" />
 
@@ -66,10 +69,10 @@
             android:id="@+id/startExploringButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/explore_movies"
+            android:layout_marginTop="@dimen/margin_32"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginTop="@dimen/margin_24dp"
+            android:text="@string/explore_movies"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -79,5 +82,10 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.lpirro.cryptomovies.presentation.view.ErrorView
+        android:id="@+id/errorView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

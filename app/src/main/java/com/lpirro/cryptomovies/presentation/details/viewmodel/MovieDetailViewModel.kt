@@ -31,7 +31,7 @@ class MovieDetailViewModel @Inject constructor(
             _movie.value = MovieDetailUiState.HeaderSuccess(movie)
         } catch (e: Exception) {
             _movie.value =
-                MovieDetailUiState.Error(e.message ?: "Error") // TODO REMOVE HARDCODED VALUE
+                MovieDetailUiState.Error
         }
     }
 
@@ -41,7 +41,7 @@ class MovieDetailViewModel @Inject constructor(
             _movie.value = MovieDetailUiState.DetailSuccess(movie)
         } catch (e: Exception) {
             _movie.value =
-                MovieDetailUiState.Error(e.message ?: "Error") // TODO REMOVE HARDCODED VALUE
+                MovieDetailUiState.Error
         }
     }
 
@@ -65,6 +65,6 @@ class MovieDetailViewModel @Inject constructor(
         data class HeaderSuccess(val movie: Movie) : MovieDetailUiState()
         data class DetailSuccess(val movie: MovieDetail) : MovieDetailUiState()
         data class WatchListEvent(val isAlreadyOnWatchList: Boolean) : MovieDetailUiState()
-        data class Error(val error: String) : MovieDetailUiState()
+        object Error : MovieDetailUiState()
     }
 }

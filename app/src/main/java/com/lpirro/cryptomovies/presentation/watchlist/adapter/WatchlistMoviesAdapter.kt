@@ -19,7 +19,7 @@ class WatchlistMoviesAdapter(
     var movies: List<WatchlistMovie> = emptyList()
         set(value) {
             field = value
-            notifyDataSetChanged()
+            notifyDataSetChanged() // TODO CHANGE IT
         }
 
     inner class MovieViewHolder(val binding: ItemWatchlistBinding) :

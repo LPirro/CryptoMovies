@@ -32,7 +32,7 @@ class WatchlistViewModel @Inject constructor(
                 _watchlist.value = WatchlistUiState.Success(watchlist)
             }
         } catch (e: Exception) {
-            _watchlist.value = WatchlistUiState.Error(e.message ?: "Error")
+            _watchlist.value = WatchlistUiState.Error
         }
     }
 
@@ -40,6 +40,6 @@ class WatchlistViewModel @Inject constructor(
         object Loading : WatchlistUiState()
         data class Success(val watchlist: List<WatchlistMovie>) : WatchlistUiState()
         object Empty : WatchlistUiState()
-        data class Error(val error: String) : WatchlistUiState()
+        object Error : WatchlistUiState()
     }
 }

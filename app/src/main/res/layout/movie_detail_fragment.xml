@@ -37,17 +37,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movieHeaderView" />
 
+
+
             <ImageView
                 android:id="@+id/backArrow"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@drawable/back_arrow_bg"
                 android:layout_marginStart="@dimen/margin_16dp"
                 android:layout_marginTop="@dimen/margin_24dp"
+                android:background="@drawable/back_arrow_bg"
                 android:src="@drawable/ic_back"
-                app:tint="@color/md_theme_dark_onSurface"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/md_theme_dark_onSurface" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
