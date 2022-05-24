@@ -60,8 +60,8 @@ class DetailsHeaderView @JvmOverloads constructor(
         }
 
     private fun updateWatchlistButton(isOnWatchlist: Boolean) {
-        @ColorInt var backgroundColor = 0
-        var buttonText = ""
+        @ColorInt val backgroundColor: Int
+        val buttonText: String
 
         if (isOnWatchlist) {
             buttonText = resources.getString(R.string.remove_from_watch_list)
