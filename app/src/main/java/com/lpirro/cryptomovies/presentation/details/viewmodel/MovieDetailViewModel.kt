@@ -6,7 +6,6 @@ import com.lpirro.cryptomovies.domain.model.Movie
 import com.lpirro.cryptomovies.domain.model.MovieDetail
 import com.lpirro.cryptomovies.domain.usecases.GetMovieDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -23,6 +22,7 @@ class MovieDetailViewModel @Inject constructor(
     fun start(movieId: Long) {
         fetchMovie(movieId)
         fetchMovieDetail(movieId)
+        isAlreadyOnWatchlist(movieId)
     }
 
     override fun fetchMovie(movieId: Long) = viewModelScope.launch {
@@ -47,6 +47,7 @@ class MovieDetailViewModel @Inject constructor(
 
     override fun addToWatchlist(movieId: Long) = viewModelScope.launch {
         val isAlreadyOnWatchList = movieDetailUseCase.isAlreadyOnWatchlist(movieId)
+        _movie.value = MovieDetailUiState.WatchListEvent(!isAlreadyOnWatchList)
         if (isAlreadyOnWatchList) {
             movieDetailUseCase.removeFromWatchlist(movieId)
         } else {
@@ -54,14 +55,16 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    override fun isAlreadyOnWatchlist(movieId: Long): Job {
-        TODO("Not yet implemented")
+    override fun isAlreadyOnWatchlist(movieId: Long) = viewModelScope.launch {
+        val isAlreadyOnWatchList = movieDetailUseCase.isAlreadyOnWatchlist(movieId)
+        _movie.value = MovieDetailUiState.WatchListEvent(isAlreadyOnWatchList)
     }
 
     sealed class MovieDetailUiState {
         object Loading : MovieDetailUiState()
         data class HeaderSuccess(val movie: Movie) : MovieDetailUiState()
         data class DetailSuccess(val movie: MovieDetail) : MovieDetailUiState()
+        data class WatchListEvent(val isAlreadyOnWatchList: Boolean) : MovieDetailUiState()
         data class Error(val error: String) : MovieDetailUiState()
     }
 }

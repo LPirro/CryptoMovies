@@ -61,7 +61,8 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/watchlistButton"
-        android:layout_width="206dp"
+        android:layout_width="wrap_content"
+        android:minWidth="@dimen/wishlist_button_min_width"
         android:layout_height="wrap_content"
         android:text="@string/add_to_watch_list"
         app:icon="@drawable/ic_bookmark_outline"

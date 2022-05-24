@@ -52,6 +52,9 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
                 binding.movieDetailLayout.visibility = View.VISIBLE
                 setupMovieDetails(uiState.movie)
             }
+            is MovieDetailViewModel.MovieDetailUiState.WatchListEvent -> {
+                updateWatchlistButton(uiState.isAlreadyOnWatchList)
+            }
         }
     }
 
@@ -62,9 +65,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
             movieHeaderView.movieTitle = movie.title
             movieHeaderView.headerInfo = movie.releaseDate
             backArrow.setOnClickListener { findNavController().popBackStack() }
-            movieHeaderView.watchlistClickListener = {
-                viewModel.addToWatchlist(movie.id)
-            }
+            movieHeaderView.watchlistClickListener = { viewModel.addToWatchlist(movie.id) }
         }
     }
 
@@ -79,5 +80,9 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
             movieInfoView.budget = movieDetail.budget
             movieInfoView.revenue = movieDetail.revenue
         }
+    }
+
+    private fun updateWatchlistButton(alreadyOnWatchList: Boolean) {
+        binding.movieHeaderView.isAlreadyOnWatchlist = alreadyOnWatchList
     }
 }

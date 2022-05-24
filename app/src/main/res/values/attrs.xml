@@ -7,4 +7,8 @@
         </attr>
         <attr name="sectionTitle" format="string" />
     </declare-styleable>
+
+    <attr name="colorOnTertiaryContainer" format="reference" />
+    <attr name="colorPrimaryCrypto" format="reference" />
+
 </resources>

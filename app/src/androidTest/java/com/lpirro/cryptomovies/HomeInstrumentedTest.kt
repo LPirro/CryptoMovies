@@ -1,18 +1,14 @@
 package com.lpirro.cryptomovies
 
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.lpirro.cryptomovies.presentation.MainActivity
 import org.hamcrest.CoreMatchers.allOf
-import org.hamcrest.CoreMatchers.not
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -33,14 +29,13 @@ class HomeInstrumentedTest {
 
     @Test
     fun clickOnTopRatedMovieWillShowDetailScreen() {
+
+        Thread.sleep(10000)
         onView(
             allOf(
-                withId(R.id.topRatedMoviesSectionView),
-                not(isDescendantOfA(withId(R.id.movieCoverRecyclerView)))
+                withId(R.id.movieCoverRecyclerView),
+                isDescendantOfA(withId(R.id.popularMoviesSectionView))
             )
-        )
-            .perform(
-                RecyclerViewActions.actionOnItemAtPosition<ViewHolder>(0, click())
-            )
+        ).check(matches(isDisplayed()))
     }
 }
