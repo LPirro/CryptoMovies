@@ -7,9 +7,7 @@ import com.lpirro.cryptomovies.data.peristance.MoviesDao
 import com.lpirro.cryptomovies.data.repository.mapper.MovieDetailMapper
 import com.lpirro.cryptomovies.data.repository.mapper.MovieMapper
 import com.lpirro.cryptomovies.domain.model.Category
-import com.lpirro.cryptomovies.domain.model.Movie
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
@@ -20,9 +18,9 @@ class CryptoMoviesRepositoryImpl(
     private val movieDetailMapper: MovieDetailMapper
 ) : CryptoMoviesRepository {
 
-    private fun getMovies(block: suspend () -> MoviesListDto, category: Category) = flow {
+    private fun getMovies(networkCall: suspend () -> MoviesListDto, category: Category) = flow {
         try {
-            val result = block().movies.map { movieMapper.mapDtoToEntity(it, category) }
+            val result = networkCall().movies.map { movieMapper.mapDtoToEntity(it, category) }
             moviesDao.insertMovieList(result)
             emit(moviesDao.getMoviesListWithCategory(category))
         } catch (e: NetworkConnectionInterceptor.NoConnectivityException) {

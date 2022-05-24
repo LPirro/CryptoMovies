@@ -26,6 +26,8 @@ apiKey="moviedb api key"
     - [ViewBinding](https://developer.android.com/topic/libraries/view-binding): For binding UI views into controllers (like Fragments, Activities)
     - [Room](https://developer.android.com/training/data-storage/room): For creating a Database by providing an abstraction layer over SQLite 
 - [Retrofit / OkHttp3](https://github.com/square/retrofit): For performing network request
+- [Robolectric](http://robolectric.org): For Unit Test
+- [Mockito](https://site.mockito.org): Mocking framework for Unit Test
 - [Glide](https://bumptech.github.io/glide/): For network image loading
 - Material Components: For building the UI 
 - [Ktlint](https://ktlint.github.io): For code-formatting and for keeping the code style conistent across the project
