@@ -41,10 +41,9 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
             }
             MovieDetailViewModel.MovieDetailUiState.Loading -> {
                 binding.progressBar.visibility = View.VISIBLE
-                binding.movieDetailLayout.visibility = View.GONE
+                binding.movieInfoView.visibility = View.GONE
             }
             is MovieDetailViewModel.MovieDetailUiState.HeaderSuccess -> {
-                binding.progressBar.visibility = View.GONE
                 setupHeader(uiState.movie)
             }
             is MovieDetailViewModel.MovieDetailUiState.DetailSuccess -> {
@@ -59,7 +58,6 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
 
     private fun setupHeader(movie: Movie) {
         binding.apply {
-            movieDetailLayout.visibility = View.VISIBLE
             movieHeaderView.backdropImage = movie.backdropPath
             movieHeaderView.moviePoster = movie.posterUrl
             movieHeaderView.movieTitle = movie.title
