@@ -37,6 +37,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
     private fun updateUi(uiState: MovieDetailViewModel.MovieDetailUiState) {
         when (uiState) {
             is MovieDetailViewModel.MovieDetailUiState.Error -> {
+                binding.errorView.visibility = View.VISIBLE
             }
             MovieDetailViewModel.MovieDetailUiState.Loading -> {
                 binding.progressBar.visibility = View.VISIBLE
@@ -48,7 +49,6 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
             }
             is MovieDetailViewModel.MovieDetailUiState.DetailSuccess -> {
                 binding.progressBar.visibility = View.GONE
-                binding.movieDetailLayout.visibility = View.VISIBLE
                 setupMovieDetails(uiState.movie)
             }
             is MovieDetailViewModel.MovieDetailUiState.WatchListEvent -> {
@@ -59,12 +59,14 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
 
     private fun setupHeader(movie: Movie) {
         binding.apply {
+            movieDetailLayout.visibility = View.VISIBLE
             movieHeaderView.backdropImage = movie.backdropPath
             movieHeaderView.moviePoster = movie.posterUrl
             movieHeaderView.movieTitle = movie.title
             movieHeaderView.headerInfo = movie.releaseDate
             backArrow.setOnClickListener { findNavController().popBackStack() }
             movieHeaderView.watchlistClickListener = { viewModel.addToWatchlist(movie.id) }
+            movieHeaderView.visibility = View.VISIBLE
         }
     }
 
@@ -78,6 +80,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
             movieInfoView.originalLanguage = movieDetail.originalLanguage
             movieInfoView.budget = movieDetail.budget
             movieInfoView.revenue = movieDetail.revenue
+            movieInfoView.visibility = View.VISIBLE
         }
     }
 

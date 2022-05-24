@@ -39,6 +39,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(), MovieSectionView.Movie
             topRatedMoviesSectionView.movieClickListener = this@HomeFragment
             nowPlayingMoviesSectionView.movieClickListener = this@HomeFragment
             upcomingMoviesSectionView.movieClickListener = this@HomeFragment
+            errorView.retryClickListener = { viewModel.retry() }
         }
     }
 

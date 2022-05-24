@@ -14,4 +14,10 @@ class ErrorView @JvmOverloads constructor(
 
     private val binding =
         ErrorViewBinding.inflate(LayoutInflater.from(context), this, true)
+
+    var retryClickListener: (() -> Unit)? = null
+
+    init {
+        binding.retryButton.setOnClickListener { retryClickListener?.invoke() }
+    }
 }

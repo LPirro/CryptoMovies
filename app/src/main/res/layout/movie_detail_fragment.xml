@@ -33,18 +33,30 @@
                 android:id="@+id/movieInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/movieHeaderView"
+                tools:visibility="visible" />
+
+            <com.lpirro.cryptomovies.presentation.view.ErrorViewSmall
+                android:id="@+id/errorView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movieHeaderView" />
 
             <ImageView
                 android:id="@+id/backArrow"
-                android:contentDescription="@string/back_arrow_icon"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="@dimen/margin_16dp"
                 android:layout_marginTop="@dimen/margin_24dp"
                 android:background="@drawable/back_arrow_bg"
+                android:contentDescription="@string/back_arrow_icon"
                 android:src="@drawable/ic_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

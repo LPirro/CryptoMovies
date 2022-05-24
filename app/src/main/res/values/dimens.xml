@@ -21,4 +21,5 @@
     <dimen name="movie_detail_cover_height">156dp</dimen>
     <dimen name="cast_image_size">70dp</dimen>
     <dimen name="wishlist_button_min_width">206dp</dimen>
+    <dimen name="error_view_small_min_height">260dp</dimen>
 </resources>

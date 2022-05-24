@@ -16,10 +16,9 @@ class CryptoMoviesRepositoryImpl(
     private val movieDetailMapper: MovieDetailMapper
 ) : CryptoMoviesRepository {
 
-    // TODO CHANGE IF(TRUE) AFTER TESTING
     override suspend fun getPopularMovies() = flow {
         val localMovies = moviesDao.getMoviesListWithCategory(Category.POPULAR)
-        if (true) {
+        if (localMovies.isEmpty()) {
             val result = cryptoMovieService.fetchPopularMovies().movies.map {
                 movieMapper.mapDtoToEntity(it, Category.POPULAR)
             }
@@ -32,7 +31,7 @@ class CryptoMoviesRepositoryImpl(
 
     override suspend fun getTopRatedMovies() = flow {
         val localMovies = moviesDao.getMoviesListWithCategory(Category.TOP_RATED)
-        if (true) {
+        if (localMovies.isEmpty()) {
             val result = cryptoMovieService.fetchTopRatedMovies().movies.map {
                 movieMapper.mapDtoToEntity(it, Category.TOP_RATED)
             }
@@ -45,7 +44,7 @@ class CryptoMoviesRepositoryImpl(
 
     override suspend fun getNowPlayingMovies() = flow {
         val localMovies = moviesDao.getMoviesListWithCategory(Category.NOW_PLAYING)
-        if (true) {
+        if (localMovies.isEmpty()) {
             val result = cryptoMovieService.fetchNowPlayingMovies().movies.map {
                 movieMapper.mapDtoToEntity(it, Category.NOW_PLAYING)
             }
@@ -58,7 +57,7 @@ class CryptoMoviesRepositoryImpl(
 
     override suspend fun getUpcomingMovies() = flow {
         val localMovies = moviesDao.getMoviesListWithCategory(Category.UPCOMING)
-        if (true) {
+        if (localMovies.isEmpty()) {
             val result = cryptoMovieService.fetchUpcomingMovies().movies.map {
                 movieMapper.mapDtoToEntity(it, Category.UPCOMING)
             }

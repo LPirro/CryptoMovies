@@ -24,6 +24,7 @@
     <string name="watchlist_icon">Watchlist Icon</string>
     <string name="your_watchlist_is_empty">Your Watchlist is empty</string>
     <string name="generic_error">Ooopps! Something went wrong, please try again or contact support (not me)</string>
+    <string name="generic_error_variant">For this data you will need a network connection. Check your network and try again.</string>
     <string name="try_again">Try Again</string>
     <string name="error_icon">Error Icon</string>
     <string name="back_arrow_icon">Back Arrow Icon</string>

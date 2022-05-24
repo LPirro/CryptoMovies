@@ -85,7 +85,8 @@ class DetailsHeaderView @JvmOverloads constructor(
     private fun setPoster(imageUrl: String) {
         Glide.with(this)
             .load(imageUrl)
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .error(R.drawable.ic_cover_placeholder)
             .transition(DrawableTransitionOptions.withCrossFade())
             .apply(
                 RequestOptions.bitmapTransform(

@@ -23,8 +23,13 @@ class HomeViewModel @Inject constructor(
         fetchHomeScreen()
     }
 
+    fun retry() {
+        fetchHomeScreen()
+    }
+
     override fun fetchHomeScreen() = viewModelScope.launch {
         try {
+            _homeScreen.value = HomeUiState.Loading
             val homeScreen = homeScreenUseCase.getHomeScreen()
             _homeScreen.value = HomeUiState.Success(homeScreen)
         } catch (e: Exception) {
