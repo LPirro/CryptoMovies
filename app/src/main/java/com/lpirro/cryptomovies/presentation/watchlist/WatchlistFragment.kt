@@ -8,14 +8,11 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexWrap
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.flexbox.JustifyContent
+import androidx.recyclerview.widget.GridLayoutManager
 import com.lpirro.cryptomovies.R
 import com.lpirro.cryptomovies.databinding.WatchlistFragmentBinding
 import com.lpirro.cryptomovies.presentation.base.BaseFragment
-import com.lpirro.cryptomovies.presentation.home.adapter.MoviePosterItemDecoration
+import com.lpirro.cryptomovies.presentation.watchlist.adapter.GridSpacingItemDecoration
 import com.lpirro.cryptomovies.presentation.watchlist.adapter.WatchlistMoviesAdapter
 import com.lpirro.cryptomovies.presentation.watchlist.viewmodel.WatchlistViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -65,14 +62,12 @@ class WatchlistFragment : BaseFragment<WatchlistFragmentBinding>() {
     }
 
     private fun setupRecyclerView() {
+        val spacing = resources.getDimensionPixelSize(R.dimen.margin_16dp)
         watchlistMoviesAdapter = WatchlistMoviesAdapter(::onMovieClick)
         binding.watchlistRecyclerView.apply {
-            val flexboxLayoutManager = FlexboxLayoutManager(requireContext())
-            flexboxLayoutManager.justifyContent = JustifyContent.CENTER
-            flexboxLayoutManager.flexDirection = FlexDirection.ROW
-            flexboxLayoutManager.flexWrap = FlexWrap.WRAP
-            addItemDecoration(MoviePosterItemDecoration())
-            layoutManager = flexboxLayoutManager
+            val lm = GridLayoutManager(requireContext(), 3)
+            addItemDecoration(GridSpacingItemDecoration(3, spacing, true))
+            layoutManager = lm
             adapter = watchlistMoviesAdapter
         }
     }
