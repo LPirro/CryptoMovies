@@ -1,11 +1,15 @@
 package com.lpirro.cryptomovies.data.repository
 
 import com.lpirro.cryptomovies.data.network.CryptoMovieService
+import com.lpirro.cryptomovies.data.network.interceptors.NetworkConnectionInterceptor
+import com.lpirro.cryptomovies.data.network.model.MoviesListDto
 import com.lpirro.cryptomovies.data.peristance.MoviesDao
 import com.lpirro.cryptomovies.data.repository.mapper.MovieDetailMapper
 import com.lpirro.cryptomovies.data.repository.mapper.MovieMapper
 import com.lpirro.cryptomovies.domain.model.Category
+import com.lpirro.cryptomovies.domain.model.Movie
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
@@ -16,57 +20,28 @@ class CryptoMoviesRepositoryImpl(
     private val movieDetailMapper: MovieDetailMapper
 ) : CryptoMoviesRepository {
 
-    override suspend fun getPopularMovies() = flow {
-        val localMovies = moviesDao.getMoviesListWithCategory(Category.POPULAR)
-        if (localMovies.isEmpty()) {
-            val result = cryptoMovieService.fetchPopularMovies().movies.map {
-                movieMapper.mapDtoToEntity(it, Category.POPULAR)
-            }
+    private fun getMovies(block: suspend () -> MoviesListDto, category: Category) = flow {
+        try {
+            val result = block().movies.map { movieMapper.mapDtoToEntity(it, category) }
             moviesDao.insertMovieList(result)
-            emit(result)
-        } else {
+            emit(moviesDao.getMoviesListWithCategory(category))
+        } catch (e: NetworkConnectionInterceptor.NoConnectivityException) {
+            val localMovies = moviesDao.getMoviesListWithCategory(category)
             emit(localMovies)
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun getTopRatedMovies() = flow {
-        val localMovies = moviesDao.getMoviesListWithCategory(Category.TOP_RATED)
-        if (localMovies.isEmpty()) {
-            val result = cryptoMovieService.fetchTopRatedMovies().movies.map {
-                movieMapper.mapDtoToEntity(it, Category.TOP_RATED)
-            }
-            moviesDao.insertMovieList(result)
-            emit(result)
-        } else {
-            emit(localMovies)
-        }
-    }.flowOn(Dispatchers.IO)
+    override suspend fun getPopularMovies() =
+        getMovies({ cryptoMovieService.fetchPopularMovies() }, Category.POPULAR)
 
-    override suspend fun getNowPlayingMovies() = flow {
-        val localMovies = moviesDao.getMoviesListWithCategory(Category.NOW_PLAYING)
-        if (localMovies.isEmpty()) {
-            val result = cryptoMovieService.fetchNowPlayingMovies().movies.map {
-                movieMapper.mapDtoToEntity(it, Category.NOW_PLAYING)
-            }
-            moviesDao.insertMovieList(result)
-            emit(result)
-        } else {
-            emit(localMovies)
-        }
-    }.flowOn(Dispatchers.IO)
+    override suspend fun getTopRatedMovies() =
+        getMovies({ cryptoMovieService.fetchTopRatedMovies() }, Category.TOP_RATED)
 
-    override suspend fun getUpcomingMovies() = flow {
-        val localMovies = moviesDao.getMoviesListWithCategory(Category.UPCOMING)
-        if (localMovies.isEmpty()) {
-            val result = cryptoMovieService.fetchUpcomingMovies().movies.map {
-                movieMapper.mapDtoToEntity(it, Category.UPCOMING)
-            }
-            moviesDao.insertMovieList(result)
-            emit(result)
-        } else {
-            emit(localMovies)
-        }
-    }.flowOn(Dispatchers.IO)
+    override suspend fun getNowPlayingMovies() =
+        getMovies({ cryptoMovieService.fetchNowPlayingMovies() }, Category.NOW_PLAYING)
+
+    override suspend fun getUpcomingMovies() =
+        getMovies({ cryptoMovieService.fetchUpcomingMovies() }, Category.UPCOMING)
 
     override suspend fun getMovie(movieId: Long) = flow {
         val movie = moviesDao.getMovie(movieId)

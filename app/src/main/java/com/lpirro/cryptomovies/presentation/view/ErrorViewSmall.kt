@@ -11,5 +11,8 @@ class ErrorViewSmall @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
-    private val binding = ErrorViewSmallBinding.inflate(LayoutInflater.from(context), this, true)
+
+    init {
+        ErrorViewSmallBinding.inflate(LayoutInflater.from(context), this, true)
+    }
 }

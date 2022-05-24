@@ -38,6 +38,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
         when (uiState) {
             is MovieDetailViewModel.MovieDetailUiState.Error -> {
                 binding.errorView.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
             }
             MovieDetailViewModel.MovieDetailUiState.Loading -> {
                 binding.progressBar.visibility = View.VISIBLE
