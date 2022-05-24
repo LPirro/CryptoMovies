@@ -45,15 +45,21 @@ class WatchlistFragment : BaseFragment<WatchlistFragmentBinding>() {
     }
 
     private fun updateUi(uiState: WatchlistViewModel.WatchlistUiState) {
+        binding.startExploringButton.setOnClickListener {
+            findNavController().navigate(R.id.navigation_home)
+        }
+
         when (uiState) {
             is WatchlistViewModel.WatchlistUiState.Error -> {
-                val c = 0
             }
             WatchlistViewModel.WatchlistUiState.Loading -> {
-                val c = 0
             }
             is WatchlistViewModel.WatchlistUiState.Success -> {
+                binding.emptyWatchList.visibility = View.GONE
                 watchlistMoviesAdapter.movies = uiState.watchlist
+            }
+            WatchlistViewModel.WatchlistUiState.Empty -> {
+                binding.emptyWatchList.visibility = View.VISIBLE
             }
         }
     }

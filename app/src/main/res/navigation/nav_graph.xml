@@ -29,6 +29,12 @@
             app:popUpTo="@+id/navigation_watchlist"
             app:popUpToInclusive="true" />
 
+        <action
+            android:id="@+id/action_wishlist_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@+id/navigation_watchlist"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
 </navigation>

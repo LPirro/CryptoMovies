@@ -20,4 +20,7 @@
     <string name="budget_label">Budget</string>
     <string name="revenue_label">Revenue</string>
     <string name="watchlist_label">Watchlist</string>
+    <string name="explore_movies">Explore Movies</string>
+    <string name="watchlist_icon">Watchlist Icon</string>
+    <string name="your_watchlist_is_empty">Your Watchlist is empty</string>
 </resources>

@@ -26,7 +26,11 @@ class WatchlistViewModel @Inject constructor(
     override fun fetchWatchlist() = viewModelScope.launch {
         try {
             val watchlist = watchlistUseCase.getWatchlistMovies()
-            _watchlist.value = WatchlistUiState.Success(watchlist)
+            if (watchlist.isEmpty()) {
+                _watchlist.value = WatchlistUiState.Empty
+            } else {
+                _watchlist.value = WatchlistUiState.Success(watchlist)
+            }
         } catch (e: Exception) {
             _watchlist.value = WatchlistUiState.Error(e.message ?: "Error")
         }
@@ -35,6 +39,7 @@ class WatchlistViewModel @Inject constructor(
     sealed class WatchlistUiState {
         object Loading : WatchlistUiState()
         data class Success(val watchlist: List<WatchlistMovie>) : WatchlistUiState()
+        object Empty : WatchlistUiState()
         data class Error(val error: String) : WatchlistUiState()
     }
 }
