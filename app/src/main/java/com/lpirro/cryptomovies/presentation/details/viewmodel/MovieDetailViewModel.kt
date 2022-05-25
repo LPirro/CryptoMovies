@@ -20,12 +20,12 @@ class MovieDetailViewModel @Inject constructor(
     val movie: StateFlow<MovieDetailUiState> = _movie
 
     fun start(movieId: Long) {
-        fetchMovie(movieId)
+        fetchMovieHeader(movieId)
         fetchMovieDetail(movieId)
         isAlreadyOnWatchlist(movieId)
     }
 
-    override fun fetchMovie(movieId: Long) = viewModelScope.launch {
+    override fun fetchMovieHeader(movieId: Long) = viewModelScope.launch {
         try {
             val movie = movieDetailUseCase.getMovie(movieId)
             _movie.value = MovieDetailUiState.HeaderSuccess(movie)

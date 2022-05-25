@@ -28,6 +28,7 @@ apiKey="moviedb api key"
 - [Retrofit / OkHttp3](https://github.com/square/retrofit): For performing network request
 - [Robolectric](http://robolectric.org): For Unit Test
 - [Mockito](https://site.mockito.org): Mocking framework for Unit Test
+- [Turbine](https://github.com/cashapp/turbine): Turbine is a small testing library for kotlinx.coroutines Flow.
 - [Glide](https://bumptech.github.io/glide/): For network image loading
 - Material Components: For building the UI 
 - [Ktlint](https://ktlint.github.io): For code-formatting and for keeping the code style conistent across the project

@@ -1,28 +1,24 @@
 package com.lpirro.cryptomovies.data.repository.mapper
 
 import com.lpirro.cryptomovies.data.network.model.MovieDetailsDto
+import com.lpirro.cryptomovies.data.repository.mapper.util.CurrencyFormatter
+import com.lpirro.cryptomovies.data.repository.mapper.util.ImageUrlProvider
 import com.lpirro.cryptomovies.domain.model.MovieDetail
-import java.text.NumberFormat
 
-class MovieDetailMapperImpl : MovieDetailMapper {
+class MovieDetailMapperImpl(
+    private val imageUrlProvider: ImageUrlProvider,
+    private val currencyFormatter: CurrencyFormatter
+) : MovieDetailMapper {
     override fun mapDtoToEntity(movieDetails: MovieDetailsDto) = MovieDetail(
         overview = movieDetails.overview,
         genres = movieDetails.genres.map { it.name },
         castImages = movieDetails.credits.cast.map {
-            "https://image.tmdb.org/t/p/w500/${it.profileImageUrl}" // TODO Remove it
+            imageUrlProvider.provideFullUrl(it.profileImageUrl)
         },
         originalTitle = movieDetails.originalTitle,
         status = movieDetails.status,
         originalLanguage = movieDetails.originalLanguage.uppercase(),
-        budget = movieDetails.budget.toDollars(),
-        revenue = movieDetails.revenue.toDollars()
+        budget = currencyFormatter.formatToDollars(movieDetails.budget),
+        revenue = currencyFormatter.formatToDollars(movieDetails.revenue)
     )
-
-    private fun Int.toDollars(): String {
-        if (this == 0) return "-"
-
-        val format = NumberFormat.getCurrencyInstance()
-        format.maximumFractionDigits = 0
-        return format.format(this)
-    }
 }

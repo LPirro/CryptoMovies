@@ -90,6 +90,8 @@ dependencies {
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1"
+    testImplementation 'app.cash.turbine:turbine:0.8.0'
+
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
