@@ -51,15 +51,18 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(), MovieSectionView.Movie
             }
             HomeViewModel.HomeUiState.Loading -> {
                 binding.errorView.visibility = View.GONE
+                binding.mainLayout.visibility = View.GONE
                 binding.progressBar.visibility = View.VISIBLE
             }
             is HomeViewModel.HomeUiState.Success -> {
-                binding.progressBar.visibility = View.GONE
                 binding.apply {
                     popularMoviesSectionView.viewData = uiState.homeScreen.popularMovies
                     topRatedMoviesSectionView.viewData = uiState.homeScreen.topRatedMovies
                     nowPlayingMoviesSectionView.viewData = uiState.homeScreen.nowPlayingMovies
                     upcomingMoviesSectionView.viewData = uiState.homeScreen.upcomingMovies
+                    progressBar.visibility = View.GONE
+                    errorView.visibility = View.GONE
+                    mainLayout.visibility = View.VISIBLE
                 }
             }
         }
