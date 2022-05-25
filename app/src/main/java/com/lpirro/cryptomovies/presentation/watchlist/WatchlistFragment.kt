@@ -51,12 +51,11 @@ class WatchlistFragment : BaseFragment<WatchlistFragmentBinding>() {
                 binding.errorView.visibility = View.VISIBLE
             }
             WatchlistViewModel.WatchlistUiState.Loading -> {
-                // TODO
                 binding.errorView.visibility = View.GONE
             }
             is WatchlistViewModel.WatchlistUiState.Success -> {
                 binding.emptyWatchList.visibility = View.GONE
-                watchlistMoviesAdapter.movies = uiState.watchlist
+                watchlistMoviesAdapter.setData(uiState.watchlist)
             }
             WatchlistViewModel.WatchlistUiState.Empty -> {
                 binding.emptyWatchList.visibility = View.VISIBLE

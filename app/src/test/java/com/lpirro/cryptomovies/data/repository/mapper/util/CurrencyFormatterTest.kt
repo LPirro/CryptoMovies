@@ -1,12 +1,12 @@
 package com.lpirro.cryptomovies.data.repository.mapper.util
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
 class CurrencyFormatterTest {
 
-    lateinit var currencyFormatter: CurrencyFormatter
+    private lateinit var currencyFormatter: CurrencyFormatter
 
     @Before
     fun setup() {

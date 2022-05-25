@@ -2,6 +2,7 @@ package com.lpirro.cryptomovies.presentation.watchlist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -11,16 +12,22 @@ import com.bumptech.glide.request.RequestOptions
 import com.lpirro.cryptomovies.R
 import com.lpirro.cryptomovies.databinding.ItemWatchlistBinding
 import com.lpirro.cryptomovies.domain.model.WatchlistMovie
+import com.lpirro.cryptomovies.presentation.home.adapter.MoviesDiffCallback
 
 class WatchlistMoviesAdapter(
     private val moviePosterClickListener: (movieId: Long) -> Unit
 ) : RecyclerView.Adapter<WatchlistMoviesAdapter.MovieViewHolder>() {
 
-    var movies: List<WatchlistMovie> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged() // TODO CHANGE IT
-        }
+
+    private val watchListMovies = arrayListOf<WatchlistMovie>()
+
+    fun setData(newMovies: List<WatchlistMovie>) {
+        val diffCallback = MoviesDiffCallback(watchListMovies, newMovies)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        watchListMovies.clear()
+        watchListMovies.addAll(newMovies)
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     inner class MovieViewHolder(val binding: ItemWatchlistBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -32,7 +39,7 @@ class WatchlistMoviesAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = movies[position]
+        val movie = watchListMovies[position]
         val context = holder.itemView.context
 
         Glide.with(holder.itemView.context)
@@ -55,6 +62,6 @@ class WatchlistMoviesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return movies.size
+        return watchListMovies.size
     }
 }

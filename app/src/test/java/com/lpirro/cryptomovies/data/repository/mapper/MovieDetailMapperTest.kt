@@ -4,7 +4,7 @@ import com.lpirro.cryptomovies.data.repository.mapper.util.CurrencyFormatter
 import com.lpirro.cryptomovies.data.repository.mapper.util.ImageUrlProvider
 import com.lpirro.cryptomovies.domain.model.MovieDetail
 import com.lpirro.cryptomovies.util.MockUtil
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.kotlin.any
