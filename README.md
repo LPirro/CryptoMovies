@@ -1,6 +1,6 @@
 
 # CryptoMovies
-CryptoMovies is a small app for Blockchain.com that show modern Android developement: with Hilt, Coroutines, Flow, Jetpack and Material Design 3.
+CryptoMovies is a small app that shows modern Android developement: with Hilt, Coroutines, Flow, Jetpack and Material Design 3.
 ![Logo](https://i.ibb.co/S0mY0KZ/Senza-titolo-1.png)
 ## Project Setup / Before building the app
 Is a bad practice storing API Keys inside Git repositories so you will need to add it manually. Please, add the MovieDB API Key inside the `local.properties` file in the root directory of the project: 
