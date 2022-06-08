@@ -18,7 +18,6 @@ class WatchlistMoviesAdapter(
     private val moviePosterClickListener: (movieId: Long) -> Unit
 ) : RecyclerView.Adapter<WatchlistMoviesAdapter.MovieViewHolder>() {
 
-
     private val watchListMovies = arrayListOf<WatchlistMovie>()
 
     fun setData(newMovies: List<WatchlistMovie>) {

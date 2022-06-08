@@ -1,6 +1,6 @@
 
 # CryptoMovies
-CryptoMovies is a small app for Blockchain.com that show modern Android developement: with Hilt, Coroutines, Flow, Jetpack and Material Design 3.
+CryptoMovies is a small app for Blockchain.com that show modern Android development: with Hilt, Coroutines, Flow, Jetpack and Material Design 3.
 ![Logo](https://i.ibb.co/S0mY0KZ/Senza-titolo-1.png)
 ## Project Setup
 Is a bad practice storing API Keys inside Git repositories so you will need to add it manually. Please, add the MovieDB API Key inside the `local.properties` file in the root directory of the project: 
@@ -31,11 +31,11 @@ apiKey="moviedb api key"
 - [Turbine](https://github.com/cashapp/turbine): Turbine is a small testing library for kotlinx.coroutines Flow.
 - [Glide](https://bumptech.github.io/glide/): For network image loading
 - Material Components: For building the UI 
-- [Ktlint](https://ktlint.github.io): For code-formatting and for keeping the code style conistent across the project
+- [Ktlint](https://ktlint.github.io): For code-formatting and for keeping the code style consistent across the project
 ## Architecture
 This app is based on MVVM architecture and follows Clean Architecture principles with the repository pattern
 
-![Architecture Diagram](https://i.ibb.co/qB8KzrW/Schermata-2022-05-24-alle-17-07-32.png)
+![Architecture Diagram](https://i.ibb.co/nz3hvnY/final-002.png)
 ## Design
 ![Logo](https://i.ibb.co/6BqqNFR/figma.png)
 

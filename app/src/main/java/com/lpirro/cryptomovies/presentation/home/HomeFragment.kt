@@ -44,14 +44,12 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(), MovieSectionView.Movie
     }
 
     private fun updateUi(uiState: HomeViewModel.HomeUiState) {
+        resetViews()
         when (uiState) {
             is HomeViewModel.HomeUiState.Error -> {
-                binding.progressBar.visibility = View.GONE
                 binding.errorView.visibility = View.VISIBLE
             }
             HomeViewModel.HomeUiState.Loading -> {
-                binding.errorView.visibility = View.GONE
-                binding.mainLayout.visibility = View.GONE
                 binding.progressBar.visibility = View.VISIBLE
             }
             is HomeViewModel.HomeUiState.Success -> {
@@ -60,9 +58,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(), MovieSectionView.Movie
                     topRatedMoviesSectionView.viewData = uiState.homeScreen.topRatedMovies
                     nowPlayingMoviesSectionView.viewData = uiState.homeScreen.nowPlayingMovies
                     upcomingMoviesSectionView.viewData = uiState.homeScreen.upcomingMovies
-                    progressBar.visibility = View.GONE
-                    errorView.visibility = View.GONE
-                    mainLayout.visibility = View.VISIBLE
+                    contentLayout.visibility = View.VISIBLE
                 }
             }
         }
@@ -71,5 +67,13 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(), MovieSectionView.Movie
     override fun onMovieClick(movieId: Long) {
         val bundle = bundleOf("movieId" to movieId)
         findNavController().navigate(R.id.action_navigation_home_to_navigation_movie_detail, bundle)
+    }
+
+    private fun resetViews() {
+        binding.apply {
+            progressBar.visibility = View.GONE
+            errorView.visibility = View.GONE
+            contentLayout.visibility = View.GONE
+        }
     }
 }

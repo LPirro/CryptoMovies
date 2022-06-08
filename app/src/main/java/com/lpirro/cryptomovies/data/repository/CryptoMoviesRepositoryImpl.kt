@@ -1,7 +1,6 @@
 package com.lpirro.cryptomovies.data.repository
 
 import com.lpirro.cryptomovies.data.network.CryptoMovieService
-import com.lpirro.cryptomovies.data.network.interceptors.NetworkConnectionInterceptor
 import com.lpirro.cryptomovies.data.network.model.MoviesListDto
 import com.lpirro.cryptomovies.data.peristance.MoviesDao
 import com.lpirro.cryptomovies.data.repository.mapper.MovieDetailMapper
@@ -10,6 +9,7 @@ import com.lpirro.cryptomovies.domain.model.Category
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import java.net.UnknownHostException
 
 class CryptoMoviesRepositoryImpl(
     private val cryptoMovieService: CryptoMovieService,
@@ -23,9 +23,9 @@ class CryptoMoviesRepositoryImpl(
             val result = networkCall().movies.map { movieMapper.mapDtoToEntity(it, category) }
             moviesDao.insertMovieList(result)
             emit(moviesDao.getMoviesListWithCategory(category))
-        } catch (e: NetworkConnectionInterceptor.NoConnectivityException) {
+        } catch (e: UnknownHostException) {
             val localMovies = moviesDao.getMoviesListWithCategory(category)
-            emit(localMovies)
+            if (localMovies.isEmpty()) throw UnknownHostException() else emit(localMovies)
         }
     }.flowOn(Dispatchers.IO)
 

@@ -30,8 +30,7 @@ class MovieDetailViewModel @Inject constructor(
             val movie = movieDetailUseCase.getMovie(movieId)
             _movie.value = MovieDetailUiState.HeaderSuccess(movie)
         } catch (e: Exception) {
-            _movie.value =
-                MovieDetailUiState.Error
+            _movie.value = MovieDetailUiState.Error
         }
     }
 
@@ -40,8 +39,7 @@ class MovieDetailViewModel @Inject constructor(
             val movie = movieDetailUseCase.getMovieDetail(movieId)
             _movie.value = MovieDetailUiState.DetailSuccess(movie)
         } catch (e: Exception) {
-            _movie.value =
-                MovieDetailUiState.Error
+            _movie.value = MovieDetailUiState.Error
         }
     }
 

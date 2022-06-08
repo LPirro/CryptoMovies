@@ -1,8 +1,6 @@
 package com.lpirro.cryptomovies.data.repository
 
 import com.lpirro.cryptomovies.data.network.CryptoMovieService
-import com.lpirro.cryptomovies.data.network.interceptors.NetworkConnectionInterceptor
-import com.lpirro.cryptomovies.data.network.interceptors.NetworkConnectionInterceptor.NoConnectivityException
 import com.lpirro.cryptomovies.data.peristance.MoviesDao
 import com.lpirro.cryptomovies.data.repository.mapper.MovieDetailMapper
 import com.lpirro.cryptomovies.data.repository.mapper.MovieMapper
@@ -19,12 +17,12 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.`when`
-import org.mockito.kotlin.any
+import org.mockito.kotlin.given
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -39,7 +37,6 @@ class CryptoMoviesRepositoryTest {
     private lateinit var repository: CryptoMoviesRepository
 
     private var moviesDao: MoviesDao = mock()
-    private var networkConnectionInterceptor: NetworkConnectionInterceptor = mock()
     private var service: CryptoMovieService = mock()
 
     @Inject
@@ -101,9 +98,8 @@ class CryptoMoviesRepositoryTest {
     @Test
     fun fetchNowPlayingMoviesFromDatabaseTest() = runTest {
         val mockData = MockUtil.mockMovieList().filter { it.category == Category.NOW_PLAYING }
-        whenever(service.fetchNowPlayingMovies()).thenReturn(MockUtil.mockMovieListDto())
+        given(service.fetchNowPlayingMovies()).willAnswer { throw UnknownHostException() }
         whenever(moviesDao.getMoviesListWithCategory(Category.NOW_PLAYING)).thenReturn(mockData)
-        `when`(networkConnectionInterceptor.intercept(any())).thenThrow(NoConnectivityException())
 
         val expectedResult = repository.getNowPlayingMovies().single()
         val resultFromDatabase = moviesDao.getMoviesListWithCategory(Category.NOW_PLAYING)
@@ -113,9 +109,8 @@ class CryptoMoviesRepositoryTest {
     @Test
     fun fetchPopularMoviesFromDatabaseTest() = runTest {
         val mockData = MockUtil.mockMovieList().filter { it.category == Category.POPULAR }
+        given(service.fetchPopularMovies()).willAnswer { throw UnknownHostException() }
         whenever(moviesDao.getMoviesListWithCategory(Category.POPULAR)).thenReturn(mockData)
-        whenever(service.fetchPopularMovies()).thenReturn(MockUtil.mockMovieListDto())
-        `when`(networkConnectionInterceptor.intercept(any())).thenThrow(NoConnectivityException())
 
         val expectedResult = repository.getPopularMovies().single()
         val resultFromDatabase = moviesDao.getMoviesListWithCategory(Category.POPULAR)
@@ -125,9 +120,8 @@ class CryptoMoviesRepositoryTest {
     @Test
     fun fetchTopRatedMoviesFromDatabaseTest() = runTest {
         val mockData = MockUtil.mockMovieList().filter { it.category == Category.TOP_RATED }
+        given(service.fetchTopRatedMovies()).willAnswer { throw UnknownHostException() }
         whenever(moviesDao.getMoviesListWithCategory(Category.TOP_RATED)).thenReturn(mockData)
-        whenever(service.fetchTopRatedMovies()).thenReturn(MockUtil.mockMovieListDto())
-        `when`(networkConnectionInterceptor.intercept(any())).thenThrow(NoConnectivityException())
 
         val expectedResult = repository.getTopRatedMovies().single()
         val resultFromDatabase = moviesDao.getMoviesListWithCategory(Category.TOP_RATED)
@@ -137,9 +131,8 @@ class CryptoMoviesRepositoryTest {
     @Test
     fun fetchUpcomingMoviesFromDatabaseTest() = runTest {
         val mockData = MockUtil.mockMovieList().filter { it.category == Category.UPCOMING }
+        given(service.fetchUpcomingMovies()).willAnswer { throw UnknownHostException() }
         whenever(moviesDao.getMoviesListWithCategory(Category.UPCOMING)).thenReturn(mockData)
-        whenever(service.fetchUpcomingMovies()).thenReturn(MockUtil.mockMovieListDto())
-        `when`(networkConnectionInterceptor.intercept(any())).thenThrow(NoConnectivityException())
 
         val expectedResult = repository.getUpcomingMovies().single()
         val resultFromDatabase = moviesDao.getMoviesListWithCategory(Category.UPCOMING)

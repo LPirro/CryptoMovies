@@ -1,6 +1,11 @@
 package com.lpirro.cryptomovies.util
 
-import com.lpirro.cryptomovies.data.network.model.*
+import com.lpirro.cryptomovies.data.network.model.CastDto
+import com.lpirro.cryptomovies.data.network.model.CreditsDto
+import com.lpirro.cryptomovies.data.network.model.GenresDto
+import com.lpirro.cryptomovies.data.network.model.MovieDetailsDto
+import com.lpirro.cryptomovies.data.network.model.MovieDto
+import com.lpirro.cryptomovies.data.network.model.MoviesListDto
 import com.lpirro.cryptomovies.domain.model.Category
 import com.lpirro.cryptomovies.domain.model.HomeScreen
 import com.lpirro.cryptomovies.domain.model.Movie

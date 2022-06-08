@@ -1,13 +1,10 @@
 package com.lpirro.cryptomovies.di
 
-import android.content.Context
 import com.lpirro.cryptomovies.data.network.CryptoMovieService
 import com.lpirro.cryptomovies.data.network.interceptors.ApiKeyInterceptor
-import com.lpirro.cryptomovies.data.network.interceptors.NetworkConnectionInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,10 +24,10 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(@ApplicationContext appContext: Context): CryptoMovieService = Retrofit.Builder()
+    fun provideRetrofit(): CryptoMovieService = Retrofit.Builder()
         .baseUrl(getBaseUrl())
         .addConverterFactory(GsonConverterFactory.create())
-        .client(provideOkHttp(appContext))
+        .client(provideOkHttp())
         .build()
         .create(CryptoMovieService::class.java)
 
@@ -38,11 +35,10 @@ object NetworkModule {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
-    private fun provideOkHttp(appContext: Context): OkHttpClient {
+    private fun provideOkHttp(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(provideLoggingInterceptor())
             .addInterceptor(ApiKeyInterceptor())
-            .addInterceptor(NetworkConnectionInterceptor(appContext))
             .callTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)

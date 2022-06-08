@@ -42,6 +42,7 @@ class WatchlistFragment : BaseFragment<WatchlistFragmentBinding>() {
     }
 
     private fun updateUi(uiState: WatchlistViewModel.WatchlistUiState) {
+        resetViews()
         binding.startExploringButton.setOnClickListener {
             findNavController().navigate(R.id.navigation_home)
         }
@@ -50,11 +51,8 @@ class WatchlistFragment : BaseFragment<WatchlistFragmentBinding>() {
             is WatchlistViewModel.WatchlistUiState.Error -> {
                 binding.errorView.visibility = View.VISIBLE
             }
-            WatchlistViewModel.WatchlistUiState.Loading -> {
-                binding.errorView.visibility = View.GONE
-            }
+            WatchlistViewModel.WatchlistUiState.Loading -> {}
             is WatchlistViewModel.WatchlistUiState.Success -> {
-                binding.emptyWatchList.visibility = View.GONE
                 watchlistMoviesAdapter.setData(uiState.watchlist)
             }
             WatchlistViewModel.WatchlistUiState.Empty -> {
@@ -77,5 +75,12 @@ class WatchlistFragment : BaseFragment<WatchlistFragmentBinding>() {
     private fun onMovieClick(movieId: Long) {
         val bundle = bundleOf("movieId" to movieId)
         findNavController().navigate(R.id.action_wishlist_to_movie_detail, bundle)
+    }
+
+    private fun resetViews() {
+        binding.apply {
+            errorView.visibility = View.GONE
+            emptyWatchList.visibility = View.GONE
+        }
     }
 }
