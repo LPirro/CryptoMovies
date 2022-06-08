@@ -35,19 +35,20 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
     }
 
     private fun updateUi(uiState: MovieDetailViewModel.MovieDetailUiState) {
-        resetViews()
         when (uiState) {
             is MovieDetailViewModel.MovieDetailUiState.Error -> {
                 binding.errorView.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
             }
             MovieDetailViewModel.MovieDetailUiState.Loading -> {
-                binding.movieInfoView.visibility = View.GONE
                 binding.progressBar.visibility = View.VISIBLE
+                binding.movieInfoView.visibility = View.GONE
             }
             is MovieDetailViewModel.MovieDetailUiState.HeaderSuccess -> {
                 setupHeader(uiState.movie)
             }
             is MovieDetailViewModel.MovieDetailUiState.DetailSuccess -> {
+                binding.progressBar.visibility = View.GONE
                 setupMovieDetails(uiState.movie)
             }
             is MovieDetailViewModel.MovieDetailUiState.WatchListEvent -> {
@@ -64,6 +65,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
             movieHeaderView.headerInfo = movie.releaseDate
             backArrow.setOnClickListener { findNavController().popBackStack() }
             movieHeaderView.watchlistClickListener = { viewModel.addToWatchlist(movie.id) }
+            movieHeaderView.visibility = View.VISIBLE
         }
     }
 
@@ -83,12 +85,5 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
 
     private fun updateWatchlistButton(alreadyOnWatchList: Boolean) {
         binding.movieHeaderView.isAlreadyOnWatchlist = alreadyOnWatchList
-    }
-
-    private fun resetViews() {
-        binding.apply {
-            errorView.visibility = View.GONE
-            progressBar.visibility = View.GONE
-        }
     }
 }
