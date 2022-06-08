@@ -41,6 +41,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
                 binding.errorView.visibility = View.VISIBLE
             }
             MovieDetailViewModel.MovieDetailUiState.Loading -> {
+                binding.movieInfoView.visibility = View.GONE
                 binding.progressBar.visibility = View.VISIBLE
             }
             is MovieDetailViewModel.MovieDetailUiState.HeaderSuccess -> {
@@ -88,7 +89,6 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding>() {
         binding.apply {
             errorView.visibility = View.GONE
             progressBar.visibility = View.GONE
-            movieInfoView.visibility = View.GONE
         }
     }
 }
